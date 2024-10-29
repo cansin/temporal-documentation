@@ -41,76 +41,6 @@ Depending on the programming language, it's typically implemented as a function 
 Below are different ways to develop a basic Workflow Definition.
 
 <Tabs groupId="basic-workflow-definition" queryString>
-<TabItem value="go" label="Go">
-
-**[Workflow Definition in Go](/develop/go/core-application#develop-workflows)**
-
-```go
-func YourBasicWorkflow(ctx workflow.Context) error {
-    // ...
-    return nil
-}
-```
-
-</TabItem>
-<TabItem value="java" label="Java">
-
-**[Workflow Definition in Java (Interface)](/develop/java/core-application#develop-workflows)**
-
-```java
-// Workflow interface
-@WorkflowInterface
-public interface YourBasicWorkflow {
-
-    @WorkflowMethod
-    String workflowMethod(Arguments args);
-}
-```
-
-**[Workflow Definition in Java (Implementation)](/develop/java/core-application#develop-workflows)**
-
-```java
-// Workflow implementation
-public class YourBasicWorkflowImpl implements YourBasicWorkflow {
-    // ...
-}
-```
-
-</TabItem>
-<TabItem value="php" label="PHP">
-
-**[Workflow Definition in PHP (Interface)](/develop/php/core-application#develop-workflows)**
-
-```php
-#[WorkflowInterface]
-interface YourBasicWorkflow {
-    #[WorkflowMethod]
-    public function workflowMethod(Arguments args);
-}
-```
-
-**[Workflow Definition in PHP (Implementation)](/develop/php/core-application#develop-workflows)**
-
-```php
-class YourBasicWorkflowImpl implements YourBasicWorkflow {
-    // ...
-}
-```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-**[Workflow Definition in Python](/develop/python/core-application#develop-workflows)**
-
-```Python
-@workflow.defn
-class YourWorkflow:
-    @workflow.run
-    async def YourBasicWorkflow(self, input: str) -> str:
-        # ...
-```
-
-</TabItem>
 <TabItem value="typescript" label="Typescript">
 
 **[Workflow Definition in Typescript](/develop/typescript/core-application#develop-workflows)**
@@ -128,23 +58,6 @@ export async function WorkflowExample(
 ```
 
 </TabItem>
-<TabItem value="dotnet" label=".NET">
-
-**[Workflow Definition in C# and .NET](/develop/dotnet/core-application#develop-workflow)**
-
-```csharp
-[Workflow]
-public class YourBasicWorkflow {
-
-    [WorkflowRun]
-    public async Task<string> workflowExample(string param) {
-        // ...
-    }
-}
-```
-
-</TabItem>
-
 </Tabs>
 
 A Workflow Definition may be also referred to as a Workflow Function.
@@ -164,9 +77,9 @@ Commands tell the Temporal Service which Events to create and add to the Workflo
 When a Workflow Function executes, the Commands that are emitted are compared with the existing Event History.
 If a corresponding Event already exists within the Event History that maps to the generation of that Command in the same sequence, and some specific metadata of that Command matches with some specific metadata of the Event, then the Function Execution progresses.
 
-For example, using an SDK's "Execute Activity" API generates the [ScheduleActivityTask](/references/commands#scheduleactivitytask) Command.
+For example, using an SDK's "Execute Activity" API generates the ScheduleActivityTask Command.
 When this API is called upon re-execution, that Command is compared with the Event that is in the same location within the sequence.
-The Event in the sequence must be an [ActivityTaskScheduled](/references/events#activitytaskscheduled) Event, where the Activity name is the same as what is in the Command.
+The Event in the sequence must be an ActivityTaskScheduled Event, where the Activity name is the same as what is in the Command.
 
 If a generated Command doesn't match what it needs to in the existing Event History, then the Workflow Execution returns a _non-deterministic_ error.
 
@@ -187,7 +100,7 @@ For example, let's say we have a Workflow Definition that defines the following 
 3. Complete.
 
 We start a Worker and spawn a Workflow Execution that uses that Workflow Definition.
-The Worker would emit the [StartTimer](/references/commands#starttimer) Command and the Workflow Execution would become suspended.
+The Worker would emit the StartTimer Command and the Workflow Execution would become suspended.
 
 Before the Timer is up, we change the Workflow Definition to the following sequence:
 
@@ -196,7 +109,7 @@ Before the Timer is up, we change the Workflow Definition to the following seque
 3. Complete.
 
 When the Timer fires, the next Workflow Task will cause the Workflow Function to re-execute.
-The first Command the Worker sees would be ScheduleActivityTask Command, which wouldn't match up to the expected [TimerStarted](/references/events#timerstarted) Event.
+The first Command the Worker sees would be ScheduleActivityTask Command, which wouldn't match up to the expected TimerStarted Event.
 
 The Workflow Execution would fail and return a nondeterminism error.
 
@@ -247,12 +160,7 @@ Apart from the ability to create new Task Queues for Workflow Types with the sam
 Patching APIs enable the creation of logical branching inside a Workflow Definition based on a developer-specified version identifier.
 This feature is useful for Workflow Definition logic that needs to be updated but still has running Workflow Executions that depend on it.
 
-- [How to patch Workflow code in Go](/develop/go/versioning#patching)
-- [How to patch Workflow code in Java](/develop/java/versioning#patching)
-- [How to patch Workflow code in Python](/develop/python/versioning#python-sdk-patching-api)
-- [How to patch Workflow code in PHP](/develop/php/versioning#php-sdk-patching-api)
 - [How to patch Workflow code in TypeScript](/develop/typescript/versioning#patching)
-- [How to patch Workflow code in .NET](/develop/dotnet/versioning#dotnet-sdk-patching-api)
 
 You can also use [Worker Versioning](/workers#worker-versioning) instead of Patching.
 
@@ -278,15 +186,7 @@ A Workflow Type is a name that maps to a Workflow Definition.
 
 While the Workflow Definition is the code that defines the Workflow, the Workflow Execution is created by executing that code.
 A Temporal Workflow Execution is a durable, reliable, and scalable function execution.
-It is the main unit of execution of a [Temporal Application](/temporal#temporal-application).
-
-- [How to start a Workflow Execution using temporal](/cli/workflow#start)
-- [How to start a Workflow Execution using the Go SDK](/develop/go/temporal-clients#start-workflow-execution)
-- [How to start a Workflow Execution using the Java SDK](/develop/java/temporal-clients#start-workflow-execution)
-- [How to start a Workflow Execution using the PHP SDK](/develop/php/temporal-clients#start-workflow-execution)
-- [How to start a Workflow Execution using the Python SDK](/develop/python/temporal-clients#start-workflow-execution)
-- [How to start a Workflow Execution using the TypeScript SDK](/develop/typescript/temporal-clients#start-workflow-execution)
-- [How to start a Workflow Execution using the .NET SDK](/develop/dotnet/temporal-client#start-workflow)
+It is the main unit of execution of a [Temporal Application](/temporal#temporal-application). [How to start a Workflow Execution using the TypeScript SDK](/develop/typescript/temporal-clients#start-workflow-execution)
 
 Each Temporal Workflow Execution has exclusive access to its local state.
 It executes concurrently to all other Workflow Executions, and communicates with other Workflow Executions through [Signals](/encyclopedia/workflow-message-passing#sending-signals) and the environment through [Activities](/activities).
@@ -320,11 +220,7 @@ For more information, see [Deterministic constraints](#deterministic-constraints
 
 If a failure occurs, the Workflow Execution picks up where the last recorded event occurred in the Event History.
 
-- [How to use Replay APIs using the Go SDK](/develop/go/testing-suite#replay)
-- [How to use Replay APIs using the Java SDK](/develop/java/testing-suite#replay)
-- [How to use Replay APIs using the Python SDK](/develop/python/testing-suite#replay)
 - [How to use Replay APIs using the TypeScript SDK](/develop/typescript/testing-suite#replay)
-- [How to use Replay APIs using the .NET SDK](/develop/dotnet/testing-suite#replay-test)
 
 ### Commands and awaitables
 
@@ -448,7 +344,7 @@ Too many entries in a single Workflow Execution's mutable state causes unstable 
 To protect the system, Temporal enforces a maximum number of incomplete (and complete in Public Preview) Nexus Operation requests per Workflow Execution (by default, 30 Nexus Operations).
 Once the limit is reached for a type of operation, if the Workflow Execution attempts to start another Nexus operation (by producing a ScheduleNexusOperation), it will be unable to do so (the Workflow Task Execution will fail and get retried).
 
-These limits are set with the following [dynamic configuration keys](https://github.com/temporalio/temporal/blob/de7c8879e103be666a7b067cc1b247f0ac63c25c/components/nexusoperations/config.go#L38):
+These limits are set with the following dynamic configuration keys:
 
 - MaxConcurrentOperations
 
@@ -461,11 +357,11 @@ The Workflow Execution can await on some of the Events that come as a result fro
 
 Commands are generated by the use of Workflow APIs in your code. During a Workflow Task Execution there may be several Commands that are generated.
 The Commands are batched and sent to the Temporal Service as part of the Workflow Task Execution completion request, after the Workflow Task has progressed as far as it can with the Workflow function.
-There will always be [WorkflowTaskStarted](/references/events#workflowtaskstarted) and [WorkflowTaskCompleted](/references/events#workflowtaskcompleted) Events in the Event History when there is a Workflow Task Execution completion request.
+There will always be WorkflowTaskStarted and WorkflowTaskCompleted Events in the Event History when there is a Workflow Task Execution completion request.
 
 <PrettyImage src="/diagrams/commands.svg" title="Commands are generated by the use of Workflow APIs in your code" />
 
-Commands are described in the [Command reference](/references/commands) and are defined in the [Temporal gRPC API](https://github.com/temporalio/api/blob/master/temporal/api/command/v1/message.proto).
+Commands are described in the Command reference and are defined in the [Temporal gRPC API](https://github.com/temporalio/api/blob/master/temporal/api/command/v1/message.proto).
 
 ### What is an Event? {#event}
 
@@ -473,25 +369,25 @@ Events are created by the Temporal Service in response to external occurrences a
 
 All Events are recorded in the [Event History](#event-history).
 
-A list of all possible Events that could appear in a Workflow Execution Event History is provided in the [Event reference](/references/events).
+A list of all possible Events that could appear in a Workflow Execution Event History is provided in the Event reference.
 
 #### Activity Events
 
 Seven Activity-related Events are added to Event History at various points in an Activity Execution:
 
-- After a [Workflow Task Execution](/workers#activity-task-execution) reaches a line of code that starts/executes an Activity, the Worker sends the Activity Type and arguments to the Temporal Service, and the Temporal Service adds an [ActivityTaskScheduled](/references/events#activitytaskscheduled) Event to Event History.
+- After a Workflow Task Execution](/workers#activity-task-execution) reaches a line of code that starts/executes an Activity, the Worker sends the Activity Type and arguments to the Temporal Service, and the Temporal Service adds an [ActivityTaskScheduled Event to Event History.
 - When `ActivityTaskScheduled` is added to History, the Temporal Service adds a corresponding Activity Task to the Task Queue.
 - A Worker polling that Task Queue picks up the Activity Task and runs the Activity function or method.
-- If the Activity function returns, the Worker reports completion to the Temporal Service, and the Temporal Service adds [ActivityTaskStarted](/references/events#activitytaskstarted) and [ActivityTaskCompleted](/references/events#activitytaskcompleted) to Event History.
-- If the Activity function throws a [non-retryable Failure](/references/failures#non-retryable), the Temporal Service adds [ActivityTaskStarted](/references/events#activitytaskstarted) and [ActivityTaskFailed](/references/events#activitytaskfailed) to Event History.
-- If the Activity function throws an error or retryable Failure, the Temporal Service schedules an Activity Task retry to be added to the Task Queue (unless you’ve reached the Maximum Attempts value of the [Retry Policy](/encyclopedia/retry-policies), in which case the Temporal Service adds [ActivityTaskStarted](/references/events#activitytaskstarted) and [ActivityTaskFailed](/references/events#activitytaskfailed) to Event History).
+- If the Activity function returns, the Worker reports completion to the Temporal Service, and the Temporal Service adds ActivityTaskStarted and ActivityTaskCompleted to Event History.
+- If the Activity function throws a non-retryable Failure, the Temporal Service adds ActivityTaskStarted and ActivityTaskFailed to Event History.
+- If the Activity function throws an error or retryable Failure, the Temporal Service schedules an Activity Task retry to be added to the Task Queue (unless you’ve reached the Maximum Attempts value of the Retry Policy](/encyclopedia/retry-policies), in which case the Temporal Service adds [ActivityTaskStarted and ActivityTaskFailed to Event History).
 - If the Activity’s [Start-to-Close Timeout](/encyclopedia/detecting-activity-failures#start-to-close-timeout) passes before the Activity function returns or throws, the Temporal Service schedules a retry.
-- If the Activity’s [Schedule-to-Close Timeout](/encyclopedia/detecting-activity-failures#schedule-to-close-timeout) passes before Activity Execution is complete, or if [Schedule-to-Start Timeout](/encyclopedia/detecting-activity-failures#schedule-to-start-timeout) passes before a Worker gets the Activity Task, the Temporal Service writes [ActivityTaskTimedOut](/references/events#activitytasktimedout) to Event History.
-- If the Activity is [canceled](/activities#cancellation), the Temporal Service writes [ActivityTaskCancelRequested](/references/events#activitytaskcancelrequested) to Event History, and if the Activity accepts cancellation, the Temporal Service writes [ActivityTaskCanceled](/references/events#activitytaskcanceled).
+- If the Activity’s Schedule-to-Close Timeout](/encyclopedia/detecting-activity-failures#schedule-to-close-timeout) passes before Activity Execution is complete, or if [Schedule-to-Start Timeout](/encyclopedia/detecting-activity-failures#schedule-to-start-timeout) passes before a Worker gets the Activity Task, the Temporal Service writes [ActivityTaskTimedOut to Event History.
+- If the Activity is canceled](/activities#cancellation), the Temporal Service writes [ActivityTaskCancelRequested to Event History, and if the Activity accepts cancellation, the Temporal Service writes ActivityTaskCanceled.
 
 :::note
 
-While the Activity is running and retrying, [ActivityTaskScheduled](/references/events#activitytaskscheduled) is the only Activity-related Event in History: [ActivityTaskStarted](/references/events#activitytaskstarted) is written along with a terminal Event like [ActivityTaskCompleted](/references/events#activitytaskcompleted) or [ActivityTaskFailed](/references/events#activitytaskfailed).
+While the Activity is running and retrying, ActivityTaskScheduled is the only Activity-related Event in History: ActivityTaskStarted is written along with a terminal Event like ActivityTaskCompleted or ActivityTaskFailed.
 
 :::
 
@@ -535,12 +431,7 @@ The new Workflow Execution has the same Workflow Id, but a different Run Id, and
 
 In the case of [Temporal Cron Jobs](#temporal-cron-job), Continue-As-New is actually used internally for the same effect.
 
-- [How to Continue-As-New using the Go SDK](/develop/go/continue-as-new)
-- [How to Continue-As-New using the Java SDK](/develop/java/continue-as-new)
-- [How to Continue-As-New using the PHP SDK](/develop/php/continue-as-new)
-- [How to Continue-As-New using the Python SDK](/develop/python/continue-as-new)
 - [How to Continue-As-New using the TypeScript SDK](/develop/typescript/continue-as-new)
-- [How to Continue-As-New using the .NET SDK](/develop/dotnet/continue-as-new)
 
 ### What is a Reset? {#reset}
 
@@ -592,7 +483,7 @@ For more information, see the following link.
 
 A Workflow Id is a customizable, application-level identifier for a [Workflow Execution](#workflow-execution) that is unique to an Open Workflow Execution within a [Namespace](/namespaces).
 
-- [How to set a Workflow Id](/develop/go/temporal-clients#workflow-id)
+- [How to set a Workflow Id](/develop/typescript/temporal-clients#workflow-id)
 
 A Workflow Id is meant to be a business-process identifier such as customer identifier or order identifier.
 
@@ -665,12 +556,7 @@ Timers in Temporal are persisted, meaning that even if your Worker or Temporal S
 Timers are reliable and efficient.
 Workers consume no additional resources while waiting for a Timer to fire, so a single Worker can await millions of Timers concurrently.
 
-- [How to set Timers in Go](/develop/go/timers)
-- [How to set Timers in Java](/develop/java/timers)
-- [How to set Timers in PHP](/develop/php/timers)
-- [How to set Timers in Python](/develop/python/timers)
 - [How to set Timers in TypeScript](/develop/typescript/timers)
-- [How to set Timers in .NET](/develop/dotnet/durable-timers)
 
 The duration of a Timer is fixed, and your Workflow might specify a value as short as one second or as long as several years.
 Although it's possible to specify an extremely precise duration, such as 36 milliseconds or 15.072 minutes, your Workflows should not rely on sub-second accuracy for Timers.
@@ -701,11 +587,7 @@ Temporal supports Dynamic Workflows, Activities, Signals, and Queries.
 
 :::note
 
-Currently, the Temporal SDKs that support Dynamic Handlers are:
-
-- [Java](/develop/java/message-passing#dynamic-handler)
-- [Python](/develop/python/message-passing#dynamic-handler)
-- [.NET](/develop/dotnet/message-passing#dynamic-handler)
+Currently, the Temporal SDKs that support Dynamic Handlers are: [Typescript](/develop/typescript/message-passing#dynamic-handler)
 
 The Go SDK supports Dynamic Signals through the [GetUnhandledSignalNames](https://pkg.go.dev/go.temporal.io/sdk/workflow#GetUnhandledSignalNames) function.
 
@@ -747,19 +629,9 @@ If there is any chance that the code provided to the Side Effect could fail, use
 
 ## What is a Schedule? {#schedule}
 
-:::tip Support, stability, and dependency info
+:::tip Support, stability, and dependency information
 
-- Is [Generally Available](https://docs.temporal.io/evaluate/development-production-features/release-stages#general-availability) as of Nov 2023
-- Introduced in Temporal Server version [1.17.0](https://github.com/temporalio/temporal/releases/tag/v1.17.0)
-- Available in the Temporal CLI
-- Available in Temporal Cloud
-- Available in [Go SDK](/develop/go/schedules#schedule-a-workflow) since [v1.22.0](https://github.com/temporalio/sdk-go/releases/tag/v1.22.0)
-- Available in [Java SDK](https://www.javadoc.io/doc/io.temporal/temporal-sdk/latest/io/temporal/client/schedules/package-summary.html) since [v1.20.0](https://github.com/temporalio/sdk-java/releases/tag/v1.20.0)
-- Available in [Python SDK](/develop/python/schedules#schedule-a-workflow) since [v1.1.0](https://github.com/temporalio/sdk-python/releases/tag/1.1.0)
 - Available in [TypeScript SDK](https://github.com/temporalio/samples-typescript/tree/main/schedules#schedules) since [v1.5.0](https://github.com/temporalio/sdk-typescript/blob/main/CHANGELOG.md#150---2022-12-07)
-- Available in [.NET SDK](https://dotnet.temporal.io/api/Temporalio.Client.Schedules.html) since [v0.1.0](https://github.com/temporalio/sdk-dotnet/releases/tag/0.1.0-alpha4)
-- Available in [PHP SDK](https://php.temporal.io/classes/Temporal-Client-ScheduleClient.html) since [v2.7.0](https://github.com/temporalio/sdk-php/releases/tag/v2.7.0)
-- Available in [gRPC API](https://api-docs.temporal.io/#temporal.api.workflowservice.v1.CreateScheduleRequest)
 
 :::
 
@@ -767,7 +639,7 @@ A Schedule contains instructions for starting a [Workflow Execution](#workflow-e
 Schedules provide a more flexible and user-friendly approach than [Temporal Cron Jobs](#temporal-cron-job).
 
 - [How to enable Schedules](#limitations)
-- [How to operate Schedules using the Temporal CLI](/cli/schedule)
+- How to operate Schedules using the Temporal CLI
 
 A Schedule has an identity and is independent of a Workflow Execution.
 This differs from a Temporal Cron Job, which relies on a cron schedule as a property of the Workflow Execution.
@@ -861,7 +733,7 @@ For more operational control, embed the contents of the time zone database file 
 
 A Schedule can be Paused.
 When a Schedule is Paused, the Spec has no effect.
-However, you can still force manual actions by using the [temporal schedule trigger](/cli/schedule#trigger) command.
+However, you can still force manual actions by using the temporal schedule trigger command.
 
 To assist communication among developers and operators, a “notes” field can be updated on pause or resume to store an explanation for the current state.
 
@@ -976,10 +848,6 @@ Schedules were built to provide a better developer experience, including more co
 
 A Temporal Cron Job is the series of Workflow Executions that occur when a Cron Schedule is provided in the call to spawn a Workflow Execution.
 
-- [How to set a Cron Schedule using the Go SDK](/develop/go/schedules#temporal-cron-jobs)
-- [How to set a Cron Schedule using the Java SDK](/develop/java/schedules#cron-schedule)
-- [How to set a Cron Schedule using the PHP SDK](/develop/php/schedules#temporal-cron-jobs)
-- [How to set a Cron Schedule using the Python SDK](/develop/python/schedules#temporal-cron-jobs)
 - [How to set a Cron Schedule using the TypeScript SDK](/develop/typescript/schedules#temporal-cron-jobs)
 
 <PrettyImage src="/diagrams/temporal-cron-job.svg" title="Temporal Cron Job timeline" />
@@ -1083,12 +951,7 @@ Use the Workflow Id in any requests to Cancel or Terminate.
 
 :::tip Support, stability, and dependency info
 
-- Available in the [Go SDK](https://pkg.go.dev/go.temporal.io/sdk/internal#StartWorkflowOptions.StartDelay) since [v1.25.0](https://github.com/temporalio/sdk-go/releases/tag/v1.25.0)
-- Available in the [Java SDK](https://www.javadoc.io/doc/io.temporal/temporal-sdk/latest/io/temporal/client/WorkflowOptions.Builder.html#setStartDelay(java.time.Duration)) since [v1.25.0](https://github.com/temporalio/sdk-java/releases/tag/v1.22.1)
-- Available in the [Python SDK](https://python.temporal.io/temporalio.client.Client.html#start_workflow) since [v1.4.0](https://github.com/temporalio/sdk-python/releases/tag/1.4.0)
-- Available in the [.NET SDK](https://dotnet.temporal.io/api/Temporalio.Client.WorkflowOptions.html#Temporalio_Client_WorkflowOptions_StartDelay) since [v1.0.0](https://github.com/temporalio/sdk-dotnet/releases/tag/1.0.0)
-- Available in the [TypeScript SDK](https://typescript.temporal.io/api/interfaces/client.WorkflowOptions#startdelay) since [v1.9.0](https://github.com/temporalio/sdk-typescript/releases/tag/v1.9.0)
-- Available in the [PHP SDK](https://php.temporal.io/classes/Temporal-Client-WorkflowOptions.html#property_workflowStartDelay) since [v2.7.0](https://github.com/temporalio/sdk-php/releases/tag/v2.7.0)
+- Available in the TypeScript SDK since [v1.9.0](https://github.com/temporalio/sdk-typescript/releases/tag/v1.9.0)
 
 :::
 

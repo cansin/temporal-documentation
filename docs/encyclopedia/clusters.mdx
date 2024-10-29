@@ -22,7 +22,7 @@ This page provides a comprehensive technical overview of a Temporal Service.
 
 A Temporal Service is the group of services, known as the [Temporal Server](#temporal-server), combined with [Persistence](#persistence) and [Visibility](#visibility) stores, that together act as a component of the Temporal Platform.
 
-See the Self-hosted Temporal Service [production deployment guide](/self-hosted-guide) for implementation guidance.
+See the Self-hosted Temporal Service production deployment guide for implementation guidance.
 
 ![A Temporal Service (Server + persistence)](/diagrams/temporal-cluster.svg)
 
@@ -49,7 +49,7 @@ Each service is aware of the others, including scaled instances, through a membe
 All Temporal Server releases abide by the [Semantic Versioning Specification](https://semver.org/).
 
 We support upgrade paths from every version beginning with Temporal v1.7.0.
-For details on upgrading your Temporal Service, see [Upgrade Server](/self-hosted-guide/upgrade-server#upgrade-server).
+For details on upgrading your Temporal Service, see Upgrade Server.
 
 We provide maintenance support for previously published minor and major versions by continuing to release critical bug fixes related to security, the prevention of data loss, and reliability, whenever they are found.
 
@@ -88,7 +88,7 @@ Types of inbound calls include the following:
 - External events
 - Worker polls
 - [Visibility](#visibility) requests
-- [Temporal CLI](/cli) (the Temporal CLI) operations
+- Temporal CLI operations
 - Calls from a remote Temporal Service related to [Multi-Cluster Replication](#multi-cluster-replication)
 
 Every inbound request related to a Workflow Execution must have a Workflow Id, which is hashed for routing purposes.
@@ -147,7 +147,7 @@ A History Shard assumes that only one concurrent operation can be within a parti
 In essence, the number of History Shards represents the number of concurrent database operations that can occur for a Temporal Service.
 This means that the number of History Shards in a Temporal Service plays a significant role in the performance of your Temporal Application.
 
-Before integrating a database, the total number of History Shards for the Temporal Service must be chosen and set in the Temporal Service's configuration (see [persistence](/references/configuration#persistence)).
+Before integrating a database, the total number of History Shards for the Temporal Service must be chosen and set in the Temporal Service's configuration (see persistence).
 After the Shard count is configured and the database integrated, the total number of History Shards for the Temporal Service cannot be changed.
 
 In theory, a Temporal Service can operate with an unlimited number of History Shards, but each History Shard adds compute overhead to the Temporal Service.
@@ -222,9 +222,7 @@ Ports are configurable in the Temporal Service configuration.
 
 Retention Period is the duration for which the Temporal Service stores data associated with closed Workflow Executions on a Namespace in the Persistence store.
 
-- [How to set the Retention Period for a Namespace](/cli/operator#create)
-- [How to set the Retention Period for a Namespace using the Go SDK](/develop/go/namespaces)
-- [How to set the Retention Period for a Namespace using the Java SDK](/develop/java/namespaces)
+- How to set the Retention Period for a Namespace
 
 A Retention Period applies to all closed Workflow Executions within a [Namespace](/namespaces) and is set when the Namespace is registered.
 
@@ -235,7 +233,7 @@ On Temporal Service version 1.18 and later, the maximum Retention Period value f
 On Temporal Service versions 1.17 and earlier, the maximum Retention Period you can set is 30 days.
 Setting the Retention Period to 0 results in the error _A valid retention period is not set on request_.
 
-If you don't set the Retention Period value when using the [`temporal operator namespace create`](/cli/operator#create) command, it defaults to 3 days.
+If you don't set the Retention Period value when using the `temporal operator namespace create` command, it defaults to 3 days.
 If you don't set the Retention Period value when using the Register Namespace Request API, it returns an error.
 
 When changing the Retention Period, the new duration applies to Workflow Executions that close after the change is saved.
@@ -298,26 +296,26 @@ You can verify supported databases in the [Temporal Server release notes](https:
 
 - For Temporal Server v1.19 and earlier, all supported databases for Visibility provide standard Visibility features, and an Elasticsearch database is required for advanced Visibility features.
 - For Temporal Server v1.20 and later, advanced Visibility features are enabled on all supported SQL databases, in addition to Elasticsearch.
-- In Temporal Server v1.21 and later, standard Visibility is no longer in development, and we recommend migrating to a [database that supports Advanced Visibility features](/self-hosted-guide/visibility). The Visibility configuration for the Temporal Service has been updated and Dual Visibility is enabled. For details, see [Visibility store setup](/self-hosted-guide/visibility).
+- In Temporal Server v1.21 and later, standard Visibility is no longer in development, and we recommend migrating to a database that supports Advanced Visibility features. The Visibility configuration for the Temporal Service has been updated and Dual Visibility is enabled. For details, see Visibility store setup.
 
 :::
 
 The term [Visibility](/visibility), within the Temporal Platform, refers to the subsystems and APIs that enable an operator to view, filter, and search for Workflow Executions that currently exist within a Temporal Service.
 
-The [Visibility store](/self-hosted-guide/visibility) in your Temporal Service stores persisted Workflow Execution Event History data and is set up as a part of your [Persistence store](#persistence) to enable listing and filtering details about Workflow Executions that exist on your Temporal Service.
+The Visibility store in your Temporal Service stores persisted Workflow Execution Event History data and is set up as a part of your [Persistence store](#persistence) to enable listing and filtering details about Workflow Executions that exist on your Temporal Service.
 
-- [How to set up a Visibility store](/self-hosted-guide/visibility)
+- How to set up a Visibility store
 
 With Temporal Server v1.21, you can set up [Dual Visibility](/visibility#dual-visibility) to migrate your Visibility store from one database to another.
 
-Support for separate standard and advanced Visibility setups will be deprecated from Temporal Server v1.21 onwards. Check [Supported databases](/self-hosted-guide/visibility) for updates. \*/}
+Support for separate standard and advanced Visibility setups will be deprecated from Temporal Server v1.21 onwards. Check Supported databases for updates. \*/}
 
 ## What is Archival? {#archival}
 
 Archival is a feature that automatically backs up [Event Histories](/workflows#event-history) and Visibility records from Temporal Service persistence to a custom blob store.
 
-- [How to create a custom Archiver](/self-hosted-guide/archival#custom-archiver)
-- [How to set up Archival](/self-hosted-guide/archival#set-up-archival)
+- How to create a custom Archiver
+- How to set up Archival
 
 Workflow Execution Event Histories are backed up after the [Retention Period](#retention-period) is reached.
 Visibility records are backed up immediately after a Workflow Execution reaches a Closed status.
@@ -337,7 +335,7 @@ It can be enabled in the [config](https://github.com/temporalio/temporal/blob/ma
 Temporal Service configuration is the setup and configuration details of your self-hosted Temporal Service, defined using YAML.
 You must define your Temporal Service configuration when setting up your self-hosted Temporal Service.
 
-For details on using Temporal Cloud, see [Temporal Cloud documentation](/cloud).
+For details on using Temporal Cloud, see Temporal Cloud documentation.
 
 Temporal Service configuration is composed of two types of configuration: [Static configuration](#static-configuration) and [Dynamic configuration](#dynamic-configuration).
 
@@ -359,7 +357,7 @@ Depending on how you want to deploy your self-hosted Temporal Service, your stat
 Static configuration values cannot be changed at runtime.
 Some values, such as the Metrics configuration or Server log level can be changed in the static configuration but require restarting the Temporal Service for the changes to take effect.
 
-For details on static configuration keys, see [Temporal Service configuration reference](/references/configuration).
+For details on static configuration keys, see Temporal Service configuration reference.
 
 For static configuration examples, see [https://github.com/temporalio/temporal/tree/master/config](https://github.com/temporalio/temporal/tree/master/config).
 
@@ -368,7 +366,7 @@ For static configuration examples, see [https://github.com/temporalio/temporal/t
 Dynamic configuration contains configuration keys that you can update in your Temporal Service setup without having to restart the server processes.
 
 All dynamic configuration keys provided by Temporal have default values that are used by the Temporal Service.
-You can override the default values by setting different values for the keys in a YAML file and setting the [dynamic configuration client](/references/configuration#dynamicconfigclient) to poll this file for updates.
+You can override the default values by setting different values for the keys in a YAML file and setting the dynamic configuration client to poll this file for updates.
 Setting dynamic configuration for your Temporal Service is optional.
 
 Setting overrides for some configuration keys updates the Temporal Service configuration immediately.
@@ -376,7 +374,7 @@ However, for configuration fields that are checked at startup (such as thread po
 
 Use dynamic configuration keys to fine-tune your self-deployed Temporal Service setup.
 
-For details on dynamic configuration keys, see [Dynamic configuration reference](/references/dynamic-configuration).
+For details on dynamic configuration keys, see Dynamic configuration reference.
 
 For dynamic configuration examples, see [https://github.com/temporalio/temporal/tree/master/config/dynamicconfig](https://github.com/temporalio/temporal/tree/master/config/dynamicconfig).
 
@@ -384,16 +382,16 @@ For dynamic configuration examples, see [https://github.com/temporalio/temporal/
 
 Secure your Temporal Service (self-hosted and Temporal Cloud) by encrypting your network communication and setting authentication and authorization protocols for API calls.
 
-For details on setting up your Temporal Service security, see [Temporal Platform security features](/security).
+For details on setting up your Temporal Service security, see Temporal Platform security features.
 
 #### mTLS encryption
 
 Temporal supports Mutual Transport Layer Security (mTLS) to encrypt network traffic between services within a Temporal Service, or between application processes and a Temporal Service.
 
-On the self-hosted Temporal Service, configure mTLS in the `tls` section of the [Temporal Service configuration](/references/configuration#tls).
+On the self-hosted Temporal Service, configure mTLS in the `tls` section of the Temporal Service configuration.
 mTLS configuration is a [static configuration](#static-configuration) property.
 
-You can then use either the [`WithConfig`](/references/server-options#withconfig) or [`WithConfigLoader`](/references/server-options#withconfigloader) server option to start your Temporal Service with this configuration.
+You can then use either the `WithConfig` or `WithConfigLoader` server option to start your Temporal Service with this configuration.
 
 The mTLS configuration includes two sections that serve to separate communication within a Temporal Service and client calls made from your application to the Temporal Service.
 
@@ -406,11 +404,11 @@ Setting mTLS for `internode` and `frontend` separately lets you use different ce
 
 Use CA certificates to authenticate client connections to your Temporal Service.
 
-On Temporal Cloud, you can [set your CA certificates in your Temporal Cloud settings](/cloud/certificates) and use the end-entity certificates in your client calls.
+On Temporal Cloud, you can set your CA certificates in your Temporal Cloud settings and use the end-entity certificates in your client calls.
 
-On the self-hosted Temporal Service, you can restrict access to Temporal Service endpoints by using the `clientCAFiles` or `clientCAData` property and the [`requireClientAuth`](/references/configuration#tls) property in your Temporal Service configuration.
-These properties can be specified in both the `internode` and `frontend` sections of the [mTLS configuration](/references/configuration#tls).
-For details, see the [tls configuration reference](/references/configuration#tls).
+On the self-hosted Temporal Service, you can restrict access to Temporal Service endpoints by using the `clientCAFiles` or `clientCAData` property and the `requireClientAuth` property in your Temporal Service configuration.
+These properties can be specified in both the `internode` and `frontend` sections of the mTLS configuration.
+For details, see the tls configuration reference.
 
 #### Server name specification
 
@@ -421,7 +419,7 @@ This ensures that the server certificate presented to any connected client has t
 
 This measure can be used for `internode` and `frontend` endpoints.
 
-For more information on mTLS configuration, see [tls configuration reference](/references/configuration#tls).
+For more information on mTLS configuration, see tls configuration reference.
 
 #### Authentication and authorization
 
@@ -434,8 +432,8 @@ These protocols address three areas: servers, client connections, and users.
 
 Temporal offers two plugin interfaces for authentication and authorization of API calls.
 
-- [`ClaimMapper`](/self-hosted-guide/security#claim-mapper)
-- [`Authorizer`](/self-hosted-guide/security#authorizer-plugin)
+- `ClaimMapper`
+- `Authorizer`
 
 The logic of both plugins can be customized to fit a variety of use cases.
 When plugins are provided, the Frontend Service invokes their implementation before running the requested operation.
@@ -455,16 +453,16 @@ Temporal Cloud emits metrics through a Prometheus HTTP API endpoint, which can b
 
 For details on Cloud metrics and setup, see the following:
 
-- [Temporal Cloud metrics reference](/cloud/metrics/)
-- [Set up Grafana with Temporal Cloud observability to view metrics](/cloud/metrics/prometheus-grafana#grafana-data-sources-configuration)
+- Temporal Cloud metrics reference
+- Set up Grafana with Temporal Cloud observability to view metrics
 
 On the self-hosted Temporal Service, expose Prometheus endpoints in your Temporal Service configuration and configure Prometheus to scrape metrics from the endpoints.
 You can then set up your observability platform (such as Grafana) to use Prometheus as a data source.
 
 For details on self-hosted Temporal Service metrics and setup, see the following:
 
-- [Temporal Service OSS metrics reference](/references/cluster-metrics)
-- [Set up Prometheus and Grafana to view SDK and self-hosted Temporal Service metrics](/self-hosted-guide/monitoring)
+- Temporal Service OSS metrics reference
+- Set up Prometheus and Grafana to view SDK and self-hosted Temporal Service metrics
 
 ## What is Multi-Cluster Replication? {#multi-cluster-replication}
 
@@ -479,7 +477,7 @@ This feature must be enabled through a Dynamic Config flag per [Global Namespace
 When the feature is enabled, Tasks are sent to the Parent Task Queue partition that matches that Namespace, if it exists.
 
 All Visibility APIs can be used against active and standby Clusters.
-This enables [Temporal UI](https://docs.temporal.io/web-ui) to work seamlessly for Global Namespaces.
+This enables Temporal UI to work seamlessly for Global Namespaces.
 Applications making API calls directly to the Temporal Visibility API continue to work even if a Global Namespace is in standby mode.
 However, they might see a lag due to replication delay when querying the Workflow Execution state from a standby Cluster.
 

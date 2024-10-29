@@ -23,7 +23,6 @@ In this section you can find the following:
 
 - [Run a development Temporal Service](#run-a-development-server)
 - [Connect to a development Temporal Service](#connect-to-a-dev-cluster)
-- [Connect to Temporal Cloud](#connect-to-temporal-cloud)
 - [Develop a Workflow](#develop-workflows)
 - [Develop an Activity](#develop-activities)
 - [Start an Activity Execution](#activity-execution)
@@ -34,10 +33,8 @@ In this section you can find the following:
 
 ## How to install the Temporal CLI and run a development server {#run-a-development-server}
 
-This section describes how to install the [Temporal CLI](/cli) and run a development Temporal Service.
-The local development Temporal Service comes packaged with the [Temporal Web UI](/web-ui).
-
-For information on deploying and running a self-hosted production Temporal Service, see the [Self-hosted guide](/self-hosted-guide), or sign up for [Temporal Cloud](/cloud) and let us run your production Temporal Service for you.
+This section describes how to install the Temporal CLI and run a development Temporal Service.
+The local development Temporal Service comes packaged with the Temporal Web UI.
 
 Temporal CLI is a tool for interacting with a Temporal Service from the command line and it includes a distribution of the Temporal Server and Web UI.
 This local development Temporal Service runs as a single process with zero runtime dependencies and it supports persistence to disk and in-memory mode through SQLite.
@@ -213,10 +210,10 @@ However, it is acceptable and common to use a Temporal Client inside an Activity
 
 :::
 
-When you are running a Temporal Service locally (such as the [Temporal CLI](https://docs.temporal.io/cli/server#start-dev)), the number of connection options you must provide is minimal.
+When you are running a Temporal Service locally (such as the Temporal CLI), the number of connection options you must provide is minimal.
 Many SDKs default to the local host or IP address and port that Temporalite and [Docker Compose](https://github.com/temporalio/docker-compose) serve (`127.0.0.1:7233`).
 
-Creating a [Connection](https://typescript.temporal.io/api/classes/client.Connection) connects to the Temporal Service, and you can pass the `Connection` instance when creating the [Client](https://typescript.temporal.io/api/classes/client.Client#connection).
+Creating a Connection connects to the Temporal Service, and you can pass the `Connection` instance when creating the Client.
 
 If you omit the `Connection` and just create a `new Client()`, it will connect to `localhost:7233`.
 
@@ -237,64 +234,6 @@ run().catch((err) => {
 });
 ```
 
-## How to connect to Temporal Cloud {#connect-to-temporal-cloud}
-
-When you connect to [Temporal Cloud](/cloud), you need to provide additional connection and client options that include the following:
-
-- The [Temporal Cloud Namespace Id](/cloud/namespaces#temporal-cloud-namespace-id).
-- The [Namespace's gRPC endpoint](/cloud/namespaces#temporal-cloud-grpc-endpoint).
-  An endpoint listing is available at the [Temporal Cloud Website](https://cloud.temporal.io/namespaces) on each Namespace detail page.
-  The endpoint contains the Namespace Id and port.
-- mTLS CA certificate.
-- mTLS private key.
-
-For more information about managing and generating client certificates for Temporal Cloud, see [How to manage certificates in Temporal Cloud](/cloud/certificates).
-
-For more information about configuring TLS to secure inter- and intra-network communication for a Temporal Service, see [Temporal Customization Samples](https://github.com/temporalio/samples-server).
-
-Create a [`Connection`](https://typescript.temporal.io/api/classes/client.Connection) with a [`connectionOptions`](https://typescript.temporal.io/api/interfaces/client.ConnectionOptions) object that has your Cloud namespace and client certificate.
-
-```ts
-import { Client, Connection } from '@temporalio/client';
-import fs from 'fs-extra';
-
-const { NODE_ENV = 'development' } = process.env;
-const isDeployed = ['production', 'staging'].includes(NODE_ENV);
-
-async function run() {
-  const cert = await fs.readFile('./path-to/your.pem');
-  const key = await fs.readFile('./path-to/your.key');
-
-  let connectionOptions = {};
-  if (isDeployed) {
-    connectionOptions = {
-      address: 'your-namespace.tmprl.cloud:7233',
-      tls: {
-        clientCertPair: {
-          crt: cert,
-          key,
-        },
-      },
-    };
-
-    const connection = await Connection.connect(connectionOptions);
-
-    const client = new Client({
-      connection,
-      namespace: 'your-namespace',
-    });
-
-    // . . .
-
-    await client.connection.close();
-  }
-}
-
-run().catch((err) => {
-  console.error(err);
-  process.exit(1);
-});
-```
 
 ## How to develop a basic Workflow {#develop-workflows}
 
@@ -678,8 +617,8 @@ ApplicationFailure: Activity function actC is not registered on this Worker, ava
 ## How to start an Activity Execution {#activity-execution}
 
 Calls to spawn [Activity Executions](/activities#activity-execution) are written within a [Workflow Definition](/workflows#workflow-definition).
-The call to spawn an Activity Execution generates the [ScheduleActivityTask](/references/commands#scheduleactivitytask) Command.
-This results in the set of three [Activity Task](/workers#activity-task) related Events ([ActivityTaskScheduled](/references/events#activitytaskscheduled), [ActivityTaskStarted](/references/events#activitytaskstarted), and ActivityTask[Closed])in your Workflow Execution Event History.
+The call to spawn an Activity Execution generates the ScheduleActivityTask Command.
+This results in the set of three Activity Task](/workers#activity-task) related Events ([ActivityTaskScheduled, ActivityTaskStarted, and ActivityTask[Closed])in your Workflow Execution Event History.
 
 A single instance of the Activities implementation is shared across multiple simultaneous Activity invocations.
 Activity implementation code should be _idempotent_.
@@ -713,12 +652,11 @@ This imports the individual Activities and declares the type alias for each Acti
 ### How to set the required Activity Timeouts {#required-timeout}
 
 Activity Execution semantics rely on several parameters.
-The only required value that needs to be set is either a [Schedule-To-Close Timeout](/encyclopedia/detecting-activity-failures#schedule-to-close-timeout) or a [Start-To-Close Timeout](/encyclopedia/detecting-activity-failures#start-to-close-timeout).
 These values are set in the Activity Options.
 
 ### How to get the results of an Activity Execution {#get-activity-results}
 
-The call to spawn an [Activity Execution](/activities#activity-execution) generates the [ScheduleActivityTask](/references/commands#scheduleactivitytask) Command and provides the Workflow with an Awaitable.
+The call to spawn an Activity Execution](/activities#activity-execution) generates the [ScheduleActivityTask Command and provides the Workflow with an Awaitable.
 Workflow Executions can either block progress until the result is available through the Awaitable or continue progressing, making use of the result when it becomes available.
 
 Since Activities are referenced by their string name, you can reference them dynamically to get the result of an Activity Execution.
@@ -852,7 +790,7 @@ This is likely inappropriate when running Node.js in a Docker environment and ca
 Therefore we recommended that you always explicitly set the `--max-old-space-size` `node` argument to approximately 80% of the maximum size (in megabytes) that you want to allocate the `node` process.
 You might need some experimentation and adjustment to find the most appropriate value based on your specific application.
 
-In practice, it is generally easier to provide this argument through the [`NODE_OPTIONS` environment variable](https://nodejs.org/api/cli.html#node_optionsoptions).
+In practice, it is generally easier to provide this argument through the `NODE_OPTIONS` environment variable.
 
 ### Do not use Alpine
 
@@ -871,13 +809,13 @@ Error: Error relocating /opt/app/node_modules/@temporalio/core-bridge/index.node
 
 ## How to run a Temporal Cloud Worker {#run-a-temporal-cloud-worker}
 
-To run a Worker that uses [Temporal Cloud](/cloud), you need to provide additional connection and client options that include the following:
+To run a Worker that uses Temporal Cloud, you need to provide additional connection and client options that include the following:
 
 - An address that includes your [Cloud Namespace Name](/namespaces) and a port number: `<Namespace>.<ID>.tmprl.cloud:<port>`.
 - mTLS CA certificate.
 - mTLS private key.
 
-For more information about managing and generating client certificates for Temporal Cloud, see [How to manage certificates in Temporal Cloud](/cloud/certificates).
+For more information about managing and generating client certificates for Temporal Cloud, see How to manage certificates in Temporal Cloud.
 
 For more information about configuring TLS to secure inter- and intra-network communication for a Temporal Service, see [Temporal Customization Samples](https://github.com/temporalio/samples-server).
 
@@ -1005,8 +943,8 @@ To spawn Workflow Executions from within another Workflow Execution, use either 
 
 See the [Customize Workflow Type](#workflow-type) section to see how to customize the name of the Workflow Type.
 
-A request to spawn a Workflow Execution causes the Temporal Service to create the first Event ([WorkflowExecutionStarted](/references/events#workflowexecutionstarted)) in the Workflow Execution Event History.
-The Temporal Service then creates the first Workflow Task, resulting in the first [WorkflowTaskScheduled](/references/events#workflowtaskscheduled) Event.
+A request to spawn a Workflow Execution causes the Temporal Service to create the first Event (WorkflowExecutionStarted) in the Workflow Execution Event History.
+The Temporal Service then creates the first Workflow Task, resulting in the first WorkflowTaskScheduled Event.
 
 When you have a Client, you can schedule the start of a Workflow with `client.workflow.start()`, specifying `workflowId`, `taskQueue`, and `args` and returning a Workflow handle immediately after the Server acknowledges the receipt.
 
@@ -1159,7 +1097,7 @@ Using a Workflow Handle isn't necessary with `client.workflow.execute()`.
 
 Workflows that prematurely end will throw a `WorkflowFailedError` if you call `result()`.
 
-If you call `result()` on a Workflow that prematurely ended for some reason, it throws a [`WorkflowFailedError` error](https://typescript.temporal.io/api/classes/client.WorkflowFailedError/) that reflects the reason. For that reason, it is recommended to catch that error.
+If you call `result()` on a Workflow that prematurely ended for some reason, it throws a `WorkflowFailedError` error that reflects the reason. For that reason, it is recommended to catch that error.
 
 ```typescript
 const handle = client.getHandle(workflowId);

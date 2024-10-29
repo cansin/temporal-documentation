@@ -32,7 +32,6 @@ It acts as the bridge for communication between your applications and the Tempor
 The following page shows how to:
 
 - [Connect to a local development Temporal Service](#connect-to-development-service)
-- [Connect to Temporal Cloud](#connect-to-temporal-cloud)
 - [Start a Workflow Execution](#start-workflow-execution)
 
 ## Connect to development Temporal Service {#connect-to-development-service}
@@ -54,7 +53,7 @@ However, it is acceptable and common to use a Temporal Client inside an Activity
 
 :::
 
-Running a Temporal Service locally, like through the [Temporal CLI](https://docs.temporal.io/cli/server#start-dev), requires minimal connection configurations.
+Running a Temporal Service locally, like through the Temporal CLI, requires minimal connection configurations.
 Many of the SDKs automatically use the default local address and port (127.0.0.1:7233) that Temporalite and [Docker Compose](https://github.com/temporalio/docker-compose) use.
 
 ```ts
@@ -74,7 +73,7 @@ run().catch((err) => {
 });
 ```
 
-To connect to the Temporal Service, you create a [Connection](https://typescript.temporal.io/api/classes/client.Connection). You then use this Connection when setting up the Client. You can pass the `Connection` instance when creating the [Client](https://typescript.temporal.io/api/classes/client.Client#connection).
+To connect to the Temporal Service, you create a Connection. You then use this Connection when setting up the Client. You can pass the `Connection` instance when creating the Client.
 
 If you omit the `Connection` and just create a `new Client()`, it will connect to `localhost:7233`.
 
@@ -82,20 +81,20 @@ If you omit the `Connection` and just create a `new Client()`, it will connect t
 
 **How to connect to Temporal Cloud using the Typescript SDK**
 
-When you connect to [Temporal Cloud](/cloud), you need to provide additional connection and client options that include the following:
+When you connect to Temporal Cloud, you need to provide additional connection and client options that include the following:
 
-- The [Temporal Cloud Namespace Id](/cloud/namespaces#temporal-cloud-namespace-id).
-- The [Namespace's gRPC endpoint](/cloud/namespaces#temporal-cloud-grpc-endpoint).
+- The Temporal Cloud Namespace Id.
+- The Namespace's gRPC endpoint.
   An endpoint listing is available at the [Temporal Cloud Website](https://cloud.temporal.io/namespaces) on each Namespace detail page.
   The endpoint contains the Namespace Id and port.
 - mTLS CA certificate.
 - mTLS private key.
 
-For more information about managing and generating client certificates for Temporal Cloud, see [How to manage certificates in Temporal Cloud](/cloud/certificates).
+For more information about managing and generating client certificates for Temporal Cloud, see How to manage certificates in Temporal Cloud.
 
 For more information about configuring TLS to secure inter- and intra-network communication for a Temporal Service, see [Temporal Customization Samples](https://github.com/temporalio/samples-server).
 
-Create a [`Connection`](https://typescript.temporal.io/api/classes/client.Connection) with a [`connectionOptions`](https://typescript.temporal.io/api/interfaces/client.ConnectionOptions) object that has your Cloud namespace and client certificate.
+Create a `Connection` with a `connectionOptions` object that has your Cloud namespace and client certificate.
 
 ```ts
 import { Client, Connection } from '@temporalio/client';
@@ -148,10 +147,10 @@ run().catch((err) => {
 In the examples below, all Workflow Executions are started using a Temporal Client.
 To spawn Workflow Executions from within another Workflow Execution, use either the Child Workflow or External Workflow APIs.
 
-See the [Customize Workflow Type](/develop/php/core-application#workflow-type) section to see how to customize the name of the Workflow Type.
+See the [Customize Workflow Type](/develop/typescript/core-application#workflow-type) section to see how to customize the name of the Workflow Type.
 
-A request to spawn a Workflow Execution causes the Temporal Service to create the first Event ([WorkflowExecutionStarted](/references/events#workflowexecutionstarted)) in the Workflow Execution Event History.
-The Temporal Service then creates the first Workflow Task, resulting in the first [WorkflowTaskScheduled](/references/events#workflowtaskscheduled) Event.
+A request to spawn a Workflow Execution causes the Temporal Service to create the first Event (WorkflowExecutionStarted) in the Workflow Execution Event History.
+The Temporal Service then creates the first Workflow Task, resulting in the first WorkflowTaskScheduled Event.
 
 When you have a Client, you can schedule the start of a Workflow with `client.workflow.start()`, specifying `workflowId`, `taskQueue`, and `args` and returning a Workflow handle immediately after the Server acknowledges the receipt.
 
@@ -300,7 +299,7 @@ Using a Workflow Handle isn't necessary with `client.workflow.execute()`.
 
 Workflows that prematurely end will throw a `WorkflowFailedError` if you call `result()`.
 
-If you call `result()` on a Workflow that prematurely ended for some reason, it throws a [`WorkflowFailedError` error](https://typescript.temporal.io/api/classes/client.WorkflowFailedError/) that reflects the reason. For that reason, it is recommended to catch that error.
+If you call `result()` on a Workflow that prematurely ended for some reason, it throws a `WorkflowFailedError` error that reflects the reason. For that reason, it is recommended to catch that error.
 
 ```typescript
 const handle = client.getHandle(workflowId);

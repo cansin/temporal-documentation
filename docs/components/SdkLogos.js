@@ -2,19 +2,19 @@ import React from "react";
 
 const supportedTech = [
   {
-    link: "/develop/go",
+    link: "/develop/typescript",
     image: "/img/golang.svg",
     alt: "Go lang logo",
     class: "w-10 h-8",
   },
   {
-    link: "/develop/java",
+    link: "/develop/typescript",
     image: "/img/java.svg",
     alt: "Java logo",
     class: "w-7 h-7",
   },
   {
-    link: "/develop/python",
+    link: "/develop/typescript",
     image: "/img/python.svg",
     alt: "Python logo",
     class: "w-7 h-7",
@@ -26,13 +26,13 @@ const supportedTech = [
     class: "w-7 h-7",
   },
   {
-    link: "/develop/php",
+    link: "/develop/typescript",
     image: "/img/php.svg",
     alt: "php logo",
     class: "w-10",
   },
   {
-    link: "/develop/dotnet",
+    link: "/develop/typescript",
     image: "/img/dotnet.svg",
     alt: ".Net logo",
     class: "w-10",

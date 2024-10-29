@@ -203,11 +203,11 @@ wf.setHandler(
 
 ## Send messages {#send-messages}
 
-To send Queries, Signals, or Updates, you call methods on a [WorkflowHandle](https://typescript.temporal.io/api/namespaces/client#workflowhandle) object:
+To send Queries, Signals, or Updates, you call methods on a WorkflowHandle object:
 
-- Use [`client.workflow.start`](https://typescript.temporal.io/api/classes/client.WorkflowClient#start) and return its handle.
+- Use `client.workflow.start` and return its handle.
 
-- Use [`client.workflow.getHandle`](https://typescript.temporal.io/api/classes/client.WorkflowClient#gethandle) to retrieve a Workflow handle by its Workflow Id.
+- Use `client.workflow.getHandle` to retrieve a Workflow handle by its Workflow Id.
 
 For example:
 
@@ -223,7 +223,7 @@ To check the argument types required when sending messages -- and the return typ
 
 ### Send a Query {#send-query}
 
-Use [`WorkflowHandle.query`](https://typescript.temporal.io/api/interfaces/client.WorkflowHandle/#query) to send a Query to a Workflow Execution:
+Use `WorkflowHandle.query` to send a Query to a Workflow Execution:
 
 ```typescript
 const supportedLanguages = await handle.query(getLanguages, {
@@ -246,7 +246,7 @@ However, you can only send Signals to Workflow Executions that haven’t closed.
 
 #### Send a Signal from a Client {#send-signal-from-client}
 
-Use [WorkflowHandle.signal](https://typescript.temporal.io/api/interfaces/client.WorkflowHandle#signal) to send a Signal:
+Use WorkflowHandle.signal to send a Signal:
 
 ```typescript
 await handle.signal(greetingWorkflow.approve, { name: 'me' });
@@ -254,7 +254,7 @@ await handle.signal(greetingWorkflow.approve, { name: 'me' });
 
 - The call returns when the server accepts the Signal; it does _not_ wait for the Signal to be delivered to the Workflow Execution.
 
-- The [WorkflowExecutionSignaled](/references/events#workflowexecutionsignaled) Event appears in the Workflow's Event History.
+- The WorkflowExecutionSignaled Event appears in the Workflow's Event History.
 
 ### Send a Signal from a Workflow {#send-signal-from-workflow}
 
@@ -273,8 +273,8 @@ export async function yourWorkflowThatSignals() {
 
 When an External Signal is sent:
 
-- A [SignalExternalWorkflowExecutionInitiated](/references/events#signalexternalworkflowexecutioninitiated) Event appears in the sender's Event History.
-- A [WorkflowExecutionSignaled](/references/events#workflowexecutionsignaled) Event appears in the recipient's Event History.
+- A SignalExternalWorkflowExecutionInitiated Event appears in the sender's Event History.
+- A WorkflowExecutionSignaled Event appears in the recipient's Event History.
 
 The `getExternalWorkflowHandle` method helps ensure that Workflows remain deterministic.
 Recall that one aspect of deterministic Workflows means not directly making network calls from the Workflow.
@@ -284,7 +284,7 @@ Instead, to communicate between Workflows, we use `getExternalWorkflowHandle` to
 ### Signal-With-Start {#signal-with-start}
 
 Signal-With-Start allows a Client to send a Signal to a Workflow Execution, starting the Execution if it is not already running.
-Use [`Client.workflow.signalWithStart`](https://typescript.temporal.io/api/classes/client.WorkflowClient#signalwithstart):
+Use `Client.workflow.signalWithStart`:
 
 ```typescript
 import { Client } from '@temporalio/client';
@@ -318,7 +318,7 @@ Also note that you can't send Updates to other Workflow Executions or perform an
 
 To send an Update to a Workflow Execution, you can:
 
-- Call [`WorkflowHandle.executeUpdate`](https://typescript.temporal.io/api/interfaces/client.WorkflowHandle/#executeUpdate) and wait for the Update to complete.
+- Call `WorkflowHandle.executeUpdate` and wait for the Update to complete.
   This code fetches an Update result:
 
   ```typescript
@@ -327,7 +327,7 @@ To send an Update to a Workflow Execution, you can:
   });
   ```
 
-- Send [`WorkflowHandle.startUpdate`](https://typescript.temporal.io/api/interfaces/client.WorkflowHandle/#startUpdate) to receive an [`WorkflowUpdateHandle`](https://typescript.temporal.io/api/interfaces/client.WorkflowUpdateHandle) as soon as the Update is accepted or rejected.
+- Send `WorkflowHandle.startUpdate` to receive an `WorkflowUpdateHandle` as soon as the Update is accepted or rejected.
 
   - Use this `UpdateHandle` later to fetch your results.
   - `async` Update handlers normally perform long-running asynchronous operations, such as calling an Activity.
@@ -347,8 +347,8 @@ To send an Update to a Workflow Execution, you can:
 
 To obtain an Update handle, you can:
 
-- Use [`WorkflowHandle.startUpdate`](https://typescript.temporal.io/api/interfaces/client.WorkflowHandle/#startUpdate) to start an Update and return the handle, as shown in the preceding example.
-- Use [`getUpdateHandle`](https://typescript.temporal.io/api/interfaces/client.WorkflowHandle/#getupdatehandle) to fetch a handle for an in-progress Update using the Update ID.
+- Use `WorkflowHandle.startUpdate` to start an Update and return the handle, as shown in the preceding example.
+- Use `getUpdateHandle` to fetch a handle for an in-progress Update using the Update ID.
 
 :::info SEND MESSAGES WITHOUT TYPE SAFETY
 
@@ -356,15 +356,15 @@ In real-world development, sometimes you may be unable to import message type ob
 When you don't have access to the Workflow Definition or it isn't written in Typescript, you can still use APIs that aren't type-safe, and dynamic method invocation.
 Pass message type names instead of message type objects to:
 
-- [`client.workflow.start`](https://typescript.temporal.io/api/classes/client.WorkflowClient#start)
-- [`WorkflowHandle.query`](https://typescript.temporal.io/api/interfaces/client.WorkflowHandle/#query)
-- [WorkflowHandle.signal](https://typescript.temporal.io/api/interfaces/client.WorkflowHandle#signal)
-- [`WorkflowHandle.executeUpdate`](https://typescript.temporal.io/api/interfaces/client.WorkflowHandle/#executeUpdate)
-- [`WorkflowHandle.startUpdate`](https://typescript.temporal.io/api/interfaces/client.WorkflowHandle/#startUpdate)
+- `client.workflow.start`
+- `WorkflowHandle.query`
+- WorkflowHandle.signal
+- `WorkflowHandle.executeUpdate`
+- `WorkflowHandle.startUpdate`
 
 Pass Workflow IDs to these APIs to get Workflow handles:
 
-- [`client.workflow.getHandle`](https://typescript.temporal.io/api/classes/client.WorkflowClient#gethandle)
+- `client.workflow.getHandle`
 - [`getExternalWorkflowHandle`](https://typescript.temporal.io/api/namespaces/workflow#getExternalWorkflowHandle).
 
 :::
@@ -570,7 +570,7 @@ export async function myWorkflow(): Promise<MyWorkflowOutput> {
 When sending a Signal, Update, or Query to a Workflow, your Client might encounter the following errors:
 
 - **The client can't contact the server**:
-  You'll receive a [`client.ServiceError`](https://typescript.temporal.io/api/classes/client.ServiceError) on which the `cause.code` attribute is [gRPC status code](https://grpc.io/docs/guides/status-codes/) 14 `UNAVAILABLE` (after some retries).
+  You'll receive a `client.ServiceError` on which the `cause.code` attribute is [gRPC status code](https://grpc.io/docs/guides/status-codes/) 14 `UNAVAILABLE` (after some retries).
 
 - **The workflow does not exist**:
   You'll receive an [`common.WorkflowNotFoundError`](https://typescript.temporal.io/api/classes/common.WorkflowNotFoundError) error.
@@ -588,14 +588,14 @@ When working with Updates, you may encounter these problems:
 - **No Workflow Workers are polling the Task Queue**:
   Your request will be retried by the SDK Client indefinitely.
 
-- **Update failed**: You'll receive a [`client.WorkflowUpdateFailedError`](https://typescript.temporal.io/api/classes/client.WorkflowUpdateFailedError) exception.
+- **Update failed**: You'll receive a `client.WorkflowUpdateFailedError` exception.
   There are two ways this can happen:
 
   - The Update was rejected by an Update validator defined in the Workflow alongside the Update handler.
 
   - The Update failed after having been accepted.
 
-  Update failures are like [Workflow failures](/references/failures#errors-in-workflows).
+  Update failures are like Workflow failures.
   Issues that cause a Workflow failure in the main method also cause Update failures in the Update handler.
   These might include:
 
@@ -604,13 +604,13 @@ When working with Updates, you may encounter these problems:
       - The Workflow author raising `ApplicationFailure`
 
 - **The handler caused the Workflow Task to fail**:
-  A [Workflow Task Failure](/references/failures#errors-in-workflows) causes the server to retry Workflow Tasks indefinitely. What happens to your Update request depends on its stage:
-  - If the request hasn't been accepted by the server, you receive a [`client.ServiceError`](https://typescript.temporal.io/api/classes/client.ServiceError) on which the `cause.code` attribute is [gRPC status code](https://grpc.io/docs/guides/status-codes/) 9 `FAILED_PRECONDITION` (after some retries).
+  A Workflow Task Failure causes the server to retry Workflow Tasks indefinitely. What happens to your Update request depends on its stage:
+  - If the request hasn't been accepted by the server, you receive a `client.ServiceError` on which the `cause.code` attribute is [gRPC status code](https://grpc.io/docs/guides/status-codes/) 9 `FAILED_PRECONDITION` (after some retries).
   - If the request has been accepted, it is durable.
-    Once the Workflow is healthy again after a code deploy, use an [`WorkflowUpdateHandle`](https://typescript.temporal.io/api/interfaces/client.WorkflowUpdateHandle) to fetch the Update result.
+    Once the Workflow is healthy again after a code deploy, use an `WorkflowUpdateHandle` to fetch the Update result.
 
 - **The Workflow finished while the Update handler execution was in progress**:
-  You'll receive a [`client.ServiceError`](https://typescript.temporal.io/api/classes/client.ServiceError) on which the `cause.code` attribute is [gRPC status code](https://grpc.io/docs/guides/status-codes/) 5 `NOT_FOUND`.
+  You'll receive a `client.ServiceError` on which the `cause.code` attribute is [gRPC status code](https://grpc.io/docs/guides/status-codes/) 5 `NOT_FOUND`.
   This happens if the Workflow finished while the Update handler execution was in progress, for example because
 
   - The Workflow was canceled or failed.
@@ -622,10 +622,10 @@ When working with Updates, you may encounter these problems:
 When working with Queries, you may encounter these errors:
 
 - **There is no Workflow Worker polling the Task Queue**:
-  You'll receive a [`client.ServiceError`](https://typescript.temporal.io/api/classes/client.ServiceError) on which the `cause.code` attribute is [gRPC status code](https://grpc.io/docs/guides/status-codes/) 9 `FAILED_PRECONDITION`.
+  You'll receive a `client.ServiceError` on which the `cause.code` attribute is [gRPC status code](https://grpc.io/docs/guides/status-codes/) 9 `FAILED_PRECONDITION`.
 
 - **Query failed**:
-  You'll receive a [`client.QueryNotRegisteredError`](https://typescript.temporal.io/api/classes/client.QueryNotRegisteredError) exception if something goes wrong during a Query.
+  You'll receive a `client.QueryNotRegisteredError` exception if something goes wrong during a Query.
   Any error in a Query handler will trigger this error.
   This differs from Signal and Update requests, where errors can lead to Workflow Task Failure instead.
 

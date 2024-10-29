@@ -52,12 +52,7 @@ Hence, a Temporal Application can run for seconds or years in the presence of ar
 
 Each Temporal SDK targets a specific programming language.
 
-- [Go SDK feature guides](/develop/go)
-- [Java SDK feature guides](/develop/java)
-- [PHP SDK feature guides](/develop/php)
-- [Python SDK feature guides](/develop/python/)
 - [TypeScript SDK feature guides](/develop/typescript/)
-- [.NET SDK feature guides](/develop/dotnet)
 
 Despite supporting multiple languages, and supporting many features, Temporal SDKs aim to make developers feel at home in their language.
 
@@ -137,7 +132,7 @@ Another quality of the SDKs lies in their ability to replay Workflow Executions,
 We will delve into this idea more later, but for now, it signifies that the SDKs can automatically continue a process from the point of interruption, should a failure occur.
 This capability stems from the SDK's ability to persist each step the program takes.
 
-{/* - [Developing for Durable Execution using the Go SDK](/develop/go/durable-execution) */}
+{/* - [Developing for Durable Execution using the Typescript SDK](/develop/typescript/durable-execution) */}
 
 ## Temporal SDKs major components {#major-components}
 
@@ -174,10 +169,6 @@ It showcases how to initialize a Temporal Client, create a connection to a local
 The following code is for example purposes only.
 For tested code samples and best practices, use your preferred language SDK's developer's guide.
 
-- [Go SDK Temporal Client feature guide](/develop/go/temporal-clients)
-- [Java SDK Temporal Client feature guide](/develop/java/temporal-clients)
-- [PHP SDK Temporal Client feature guide](/develop/php/temporal-clients#connect-to-a-dev-cluster)
-- [Python SDK Temporal Client feature guide](/develop/python/temporal-clients#connect-to-a-dev-cluster)
 - [TypeScript SDK Temporal Client feature guide](/develop/typescript/core-application#connect-to-a-dev-cluster)
 
 :::
@@ -264,7 +255,7 @@ A Workflow executes Activities (other functions that interact with external syst
 
 This Workflow code, while executing, can be paused, resumed, and migrated across physical machines without losing state.
 
-When a Workflow calls the API to execute an Activity, the Worker sends a [Command](https://docs.temporal.io/references/commands) back to the Temporal Service. The Temporal Service creates Activity Tasks in response which the same or a different Worker can then pick up and begin executing. In this way, the Worker and Temporal Service work together to incrementally execute Workflow code in a reliable way.
+When a Workflow calls the API to execute an Activity, the Worker sends a Command back to the Temporal Service. The Temporal Service creates Activity Tasks in response which the same or a different Worker can then pick up and begin executing. In this way, the Worker and Temporal Service work together to incrementally execute Workflow code in a reliable way.
 We discuss this more in detail in [The SDK and Temporal Service relationship](/encyclopedia/temporal-sdks#sdk-and-cluster-relationship) section.
 
 The SDK APIs also enable developers to write code that more genuinely maps to their process. This is because without a specialized SDK, developers might have to write a lot of boilerplate code. This can lead to code that's hard to maintain, difficult to understand, or that doesn't directly correspond to the underlying business process.
@@ -489,7 +480,7 @@ The Temporal Service creates a new Workflow Task which the Worker picks up.
 
 <PrettyImage src="/diagrams/how-sdk-works-1.svg" title="The Worker picks up the new Task" />
 
-This is when the SDK Worker Replays the Workflow code, uses the Event History as guidance on what to expect. If the Replay encounters an Event that doesn't match up with what is expected from the code, a [non-determinism](/references/errors#non-deterministic-error) error gets thrown.
+This is when the SDK Worker Replays the Workflow code, uses the Event History as guidance on what to expect. If the Replay encounters an Event that doesn't match up with what is expected from the code, a non-determinism error gets thrown.
 
 If there is alignment, the Worker continues evaluating code.
 
@@ -506,6 +497,6 @@ And that’s how a Temporal Worker and Temporal Service work together.
 Each SDK in Temporal is meticulously crafted to cater to that language's specific nuances and best practices, ensuring seamless integration and optimal functionality.
 Read these articles to learn more:
 
-- [Go SDK multithreading](/encyclopedia/go-sdk-multithreading)
-- [Python SDK async vs sync](/encyclopedia/python-sdk-sync-vs-async)
-- [Python SDK sandbox](/encyclopedia/python-sdk-sandbox)
+- Go SDK multithreading
+- Python SDK async vs sync
+- Python SDK sandbox

@@ -38,11 +38,11 @@ Workflow Timeouts are set when starting a Workflow using either the Client or Wo
 - **[Workflow Run Timeout](/encyclopedia/detecting-workflow-failures#workflow-run-timeout):** restricts the maximum amount of time that a single Workflow Run can last
 - **[Workflow Task Timeout](/encyclopedia/detecting-workflow-failures#workflow-task-timeout):** restricts the maximum amount of time that a Worker can execute a Workflow Task
 
-The following properties can be set on the [`WorkflowOptions`](https://typescript.temporal.io/api/interfaces/client.WorkflowOptions/) when starting a Workflow using either the Client or Workflow API:
+The following properties can be set on the `WorkflowOptions` when starting a Workflow using either the Client or Workflow API:
 
-- [`workflowExecutionTimeout​`](https://typescript.temporal.io/api/interfaces/client.WorkflowOptions/#workflowexecutiontimeout)
-- [`workflowRunTimeout`](https://typescript.temporal.io/api/interfaces/client.WorkflowOptions/#workflowruntimeout)
-- [`workflowTaskTimeout`](https://typescript.temporal.io/api/interfaces/client.WorkflowOptions/#workflowtasktimeout)
+- `workflowExecutionTimeout​`
+- `workflowRunTimeout`
+- `workflowTaskTimeout`
 
 ```typescript
 await client.workflow.start(example, {
@@ -65,7 +65,7 @@ Use a [Retry Policy](/encyclopedia/retry-policies) to retry a Workflow Execution
 
 Workflow Executions do not retry by default, and Retry Policies should be used with Workflow Executions only in certain situations.
 
-The Retry Policy can be set through the [`WorkflowOptions.retry`](https://typescript.temporal.io/api/interfaces/client.WorkflowOptions/#retry) property when starting a Workflow using either the Client or Workflow API.
+The Retry Policy can be set through the `WorkflowOptions.retry` property when starting a Workflow using either the Client or Workflow API.
 
 ```typescript
 const handle = await client.workflow.start(example, {

@@ -21,11 +21,6 @@
       "permanent": true
     },
     {
-      "source": "/reference/:path*",
-      "destination": "/references/:path*",
-      "permanent": true
-    },
-    {
       "source": "/system-tools/:path*",
       "destination": "/cli",
       "permanent": true
@@ -37,11 +32,6 @@
     {
       "source": "/devtools/introduction",
       "destination": "/cli",
-      "permanent": true
-    },
-    {
-      "source": "/devtools/web-ui",
-      "destination": "/web-ui",
       "permanent": true
     },
     {
@@ -62,11 +52,6 @@
     {
       "source": "/getting-started",
       "destination": "https://learn.temporal.io/getting_started",
-      "permanent": true
-    },
-    {
-      "source": "/references/glossary",
-      "destination": "/glossary",
       "permanent": true
     },
     {
@@ -91,7 +76,7 @@
     },
     {
       "source": "/dev-guide/golang/versioning:path*",
-      "destination": "/develop/go/versioning:path*",
+      "destination": "/develop/typescript/versioning:path*",
       "permanent": true
     },
     {
@@ -381,101 +366,101 @@
     },
     {
       "source": "/go/getting-started",
-      "destination": "/develop/go",
+      "destination": "/develop/typescript",
       "permanent": true
     },
     {
       "source": "/go/introduction",
-      "destination": "/develop/go",
+      "destination": "/develop/typescript",
       "permanent": true
     },
     {
       "source": "/go-activities",
-      "destination": "/develop/go/core-application#develop-activities",
+      "destination": "/develop/typescript/core-application#develop-activities",
       "permanent": true
     },
     {
       "source": "/go/activities",
-      "destination": "/develop/go/core-application#develop-activities",
+      "destination": "/develop/typescript/core-application#develop-activities",
       "permanent": true
     },
     {
       "source": "/go/how-to-develop-an-activity-in-go",
-      "destination": "/develop/go/core-application#develop-activities",
+      "destination": "/develop/typescript/core-application#develop-activities",
       "permanent": true
     },
     {
       "source": "/go/how-to-spawn-an-activity-execution-in-go",
-      "destination": "/develop/go/core-application#activity-execution"
+      "destination": "/develop/typescript/core-application#activity-execution"
     },
     {
       "source": "/go/how-to-get-the-result-of-an-activity-execution-in-go",
-      "destination": "/develop/go/core-application#get-activity-results",
+      "destination": "/develop/typescript/core-application#get-activity-results",
       "permanent": true
     },
     {
       "source": "/go/how-to-heartbeat-an-activity-in-go",
-      "destination": "/develop/go/failure-detection#activity-heartbeats",
+      "destination": "/develop/typescript/failure-detection#activity-heartbeats",
       "permanent": true
     },
     {
       "source": "/go/child-workflows",
-      "destination": "/develop/go/child-workflows",
+      "destination": "/develop/typescript/child-workflows",
       "permanent": true
     },
     {
       "source": "/go/how-to-spawn-a-child-workflow-execution-in-go",
-      "destination": "/develop/go/child-workflows",
+      "destination": "/develop/typescript/child-workflows",
       "permanent": true
     },
     {
       "source": "/go-continue-as-new",
-      "destination": "/develop/go/continue-as-new",
+      "destination": "/develop/typescript/continue-as-new",
       "permanent": true
     },
     {
       "source": "/go/continue-as-new",
-      "destination": "/develop/go/how-to-continue-as-new-in-go",
+      "destination": "/develop/typescript/how-to-continue-as-new-in-go",
       "permanent": true
     },
     {
       "source": "/go-create-workflows",
-      "destination": "/develop/go/core-application#develop-workflows",
+      "destination": "/develop/typescript/core-application#develop-workflows",
       "permanent": true
     },
     {
       "source": "/go/create-workflows",
-      "destination": "/develop/go/core-application#develop-workflows",
+      "destination": "/develop/typescript/core-application#develop-workflows",
       "permanent": true
     },
     {
       "source": "/go/workflows",
-      "destination": "/develop/go/core-application#develop-workflows",
+      "destination": "/develop/typescript/core-application#develop-workflows",
       "permanent": true
     },
     {
       "source": "/go/how-to-develop-a-workflow-in-go",
-      "destination": "/develop/go/core-application#develop-workflows",
+      "destination": "/develop/typescript/core-application#develop-workflows",
       "permanent": true
     },
     {
       "source": "/go/how-to-spawn-a-workflow-execution-in-go",
-      "destination": "/develop/go/core-application#start-workflow-execution",
+      "destination": "/develop/typescript/core-application#start-workflow-execution",
       "permanent": true
     },
     {
       "source": "/go/how-to-get-the-result-of-a-workflow-execution-in-go",
-      "destination": "/develop/go/core-application#get-workflow-results",
+      "destination": "/develop/typescript/core-application#get-workflow-results",
       "permanent": true
     },
     {
       "source": "/go/distributed-cron",
-      "destination": "/develop/go/schedules#temporal-cron-jobs",
+      "destination": "/develop/typescript/schedules#temporal-cron-jobs",
       "permanent": true
     },
     {
       "source": "/go-error-handling",
-      "destination": "/develop/go/error-handling",
+      "destination": "/develop/typescript/error-handling",
       "permanent": true
     },
     {
@@ -485,12 +470,12 @@
     },
     {
       "source": "/go/queries",
-      "destination": "/develop/go/message-passing#queries",
+      "destination": "/develop/typescript/message-passing#queries",
       "permanent": true
     },
     {
       "source": "/go/retries",
-      "destination": "/develop/go/failure-detection#activity-timeouts",
+      "destination": "/develop/typescript/failure-detection#activity-timeouts",
       "permanent": true
     },
     {
@@ -505,22 +490,17 @@
     },
     {
       "source": "/go-search-apis",
-      "destination": "/develop/go/visibility",
+      "destination": "/develop/typescript/visibility",
       "permanent": true
     },
     {
       "source": "/go-selectors",
-      "destination": "/develop/go/selectors",
-      "permanent": true
-    },
-    {
-      "source": "/go/sessions",
-      "destination": "/develop/go/sessions",
+      "destination": "/develop/typescript/selectors",
       "permanent": true
     },
     {
       "source": "/go/side-effects",
-      "destination": "/develop/go/side-effects",
+      "destination": "/develop/typescript/side-effects",
       "permanent": true
     },
     {
@@ -608,26 +588,22 @@
       "destination": "/dev-guide/go/foundations#develop-workflows"
     },
     {
-      "source": "/go-sessions/#use-cases",
-      "destination": "/develop/go/sessions"
-    },
-    {
       "source": "/go/:path*",
-      "destination": "/develop/go"
+      "destination": "/develop/typescript"
     },
     {
       "source": "/dev-guide/go/foundations:path*",
-      "destination": "/develop/go/core-application",
+      "destination": "/develop/typescript/core-application",
       "permanent": true
     },
     {
       "source": "/dev-guide/go/features:path*",
-      "destination": "/develop/go",
+      "destination": "/develop/typescript",
       "permanent": true
     },
     {
       "source": "/dev-guide/go/testing:path*",
-      "destination": "/develop/go/testing-suite",
+      "destination": "/develop/typescript/testing-suite",
       "permanent": true
     },
     {
@@ -724,17 +700,17 @@
     },
     {
       "source": "/dev-guide/java/foundations:path*",
-      "destination": "/develop/java/core-application",
+      "destination": "/develop/typescript/core-application",
       "permanent": true
     },
     {
       "source": "/dev-guide/java/features:path*",
-      "destination": "/develop/java",
+      "destination": "/develop/typescript",
       "permanent": true
     },
     {
       "source": "/dev-guide/java/testing:path*",
-      "destination": "/develop/java/testing-suite",
+      "destination": "/develop/typescript/testing-suite",
       "permanent": true
     },
     {
@@ -835,38 +811,34 @@
     },
     {
       "source": "/php/introduction",
-      "destination": "/develop/php"
+      "destination": "/develop/typescript"
     },
     {
       "source": "/php/versioning",
-      "destination": "/develop/php"
+      "destination": "/develop/typescript"
     },
     {
       "source": "/php/versioning#workflowgetversion",
-      "destination": "/develop/php"
+      "destination": "/develop/typescript"
     },
     {
       "source": "/dev-guide/php/foundations:path*",
-      "destination": "/develop/php/core-application",
+      "destination": "/develop/typescript/core-application",
       "permanent": true
     },
     {
       "source": "/dev-guide/php/features:path*",
-      "destination": "/develop/php",
+      "destination": "/develop/typescript",
       "permanent": true
     },
     {
       "source": "dev-guide/php/testing:path*",
-      "destination": "/develop/php/testing-suite",
+      "destination": "/develop/typescript/testing-suite",
       "permanent": true
     },
     {
       "source": "/server",
       "destination": "/clusters/"
-    },
-    {
-      "source": "/server/configuration",
-      "destination": "/references/configuration"
     },
     {
       "source": "/server-archive-data",
@@ -883,10 +855,6 @@
     {
       "source": "/clusters/how-to-create-a-custom-archiver",
       "destination": "/self-hosted-guide/archival"
-    },
-    {
-      "source": "/server-configuration",
-      "destination": "/references/configuration"
     },
     {
       "source": "/server-introduction",
@@ -913,24 +881,8 @@
       "destination": "/self-hosted-guide/multi-cluster-replication"
     },
     {
-      "source": "/server-options",
-      "destination": "/references/server-options"
-    },
-    {
-      "source": "/server/options",
-      "destination": "/references/server-options"
-    },
-    {
-      "source": "/server-production-deploy",
-      "destination": "/production-deployment"
-    },
-    {
       "source": "/server-production-deployment",
       "destination": "production-deployment"
-    },
-    {
-      "source": "/server/production-deploy",
-      "destination": "/production-deployment"
     },
     {
       "source": "/server-quick-install",
@@ -943,10 +895,6 @@
     {
       "source": "/clusters/quick-install",
       "destination": "/dev-guide"
-    },
-    {
-      "source": "/server/security",
-      "destination": "/security"
     },
     {
       "source": "/cluster/how-to-deploy-temporal-to-kubernetes-for-testing-and-development",
@@ -975,10 +923,6 @@
     {
       "source": "/clusters/how-to-integrate-elasticsearch-into-a-temporal-cluster",
       "destination": "/self-hosted-guide/visibility"
-    },
-    {
-      "source": "/server-security",
-      "destination": "/security"
     },
     {
       "source": "/server-versions-and-dependencies",
@@ -1011,114 +955,6 @@
     {
       "source": "/tctl",
       "destination": "/tctl-v1"
-    },
-    {
-      "source": "/references/ui-configuration",
-      "destination": "/references/web-ui-configuration"
-    },
-    {
-      "source": "/cloud/tcld/account/get",
-      "destination": "/cloud/tcld/account#get"
-    },
-    {
-      "source": "/cloud/tcld/account/metrics/",
-      "destination": "/cloud/tcld/account#metrics"
-    },
-    {
-      "source": "/cloud/tcld/account/metrics/enable",
-      "destination": "/cloud/tcld/account#enable"
-    },
-    {
-      "source": "/cloud/tcld/account/metrics/disable",
-      "destination": "/cloud/tcld/account#disable"
-    },
-    {
-      "source": "/cloud/tcld/account/metrics/accepted-client-ca/",
-      "destination": "/cloud/tcld/account#accepted-client-ca"
-    },
-    {
-      "source": "/cloud/tcld/account/metrics/accepted-client-ca/add",
-      "destination": "/cloud/tcld/account#add"
-    },
-    {
-      "source": "/cloud/tcld/account/metrics/accepted-client-ca/list",
-      "destination": "/cloud/tcld/account#list"
-    },
-    {
-      "source": "/cloud/tcld/account/metrics/accepted-client-ca/set",
-      "destination": "/cloud/tcld/account#set"
-    },
-    {
-      "source": "/cloud/tcld/account/metrics/accepted-client-ca/remove",
-      "destination": "/cloud/tcld/account#remove"
-    },
-    {
-      "source": "/cloud/tcld/account/metrics/accepted-client-ca/remove",
-      "destination": "/cloud/tcld/account#remove"
-    },
-    {
-      "source": "/cloud/tcld/namespace/list",
-      "destination": "/cloud/tcld/namespace#list"
-    },
-    {
-      "source": "/cloud/tcld/namespace/get",
-      "destination": "/cloud/tcld/namespace#get"
-    },
-    {
-      "source": "/cloud/tcld/namespace/accepted-client-ca/",
-      "destination": "/cloud/tcld/namespace#accepted-client-ca"
-    },
-    {
-      "source": "/cloud/tcld/namespace/accepted-client-ca/add",
-      "destination": "/cloud/tcld/namespace#add"
-    },
-    {
-      "source": "/cloud/tcld/namespace/accepted-client-ca/list",
-      "destination": "/cloud/tcld/namespace#list-1"
-    },
-    {
-      "source": "/cloud/tcld/namespace/accepted-client-ca/set",
-      "destination": "/cloud/tcld/namespace#set"
-    },
-    {
-      "source": "/cloud/tcld/namespace/accepted-client-ca/remove",
-      "destination": "/cloud/tcld/namespace#remove"
-    },
-    {
-      "source": "/cloud/tcld/namespace/certificate-filters/",
-      "destination": "/cloud/tcld/namespace#certificate-filters"
-    },
-    {
-      "source": "/cloud/tcld/namespace/certificate-filters/import",
-      "destination": "/cloud/tcld/namespace#import"
-    },
-    {
-      "source": "/cloud/tcld/namespace/certificate-filters/export",
-      "destination": "/cloud/tcld/namespace#export"
-    },
-    {
-      "source": "/cloud/tcld/namespace/certificate-filters/clear",
-      "destination": "/cloud/tcld/namespace#clear"
-    },
-    {
-      "source": "/cloud/tcld/namespace/search-attributes/",
-      "destination": "/cloud/tcld/namespace#search-attributes"
-    },
-    {
-      "source": "/cloud/tcld/namespace/search-attributes/add",
-      "destination": "/cloud/tcld/namespace#add-1"
-    },
-    {
-      "source": "/cloud/tcld/namespace/search-attributes/rename",
-      "destination": "/cloud/tcld/namespace#rename"
-    },
-    {
-      "source": "/cloud/tcld/request/get",
-      "destination": "/cloud/tcld/request#get"
-    },
-    {
-      "source": "/cloud/operating-envelope",
-      "destination": "/cloud/service-availability"
     },
     {
       "source": "/external-resources",
@@ -1175,14 +1011,6 @@
     {
       "source": "/concepts/what-is-continue-as-new",
       "destination": "/workflows#continue-as-new"
-    },
-    {
-      "source": "/concepts/what-is-a-cloud-namespace-name",
-      "destination": "/cloud/namespaces#temporal-cloud-namespace-name"
-    },
-    {
-      "source": "/concepts/what-is-a-data-converter",
-      "destination": "/security#data-converter"
     },
     {
       "source": "/concepts/what-is-an-event",
@@ -1401,14 +1229,6 @@
       "destination": "/cluster-deployment-guide#upgrade-server"
     },
     {
-      "source": "/concepts/what-is-a-claimmapper-plugin",
-      "destination": "/security#claim-mapper"
-    },
-    {
-      "source": "/concepts/what-is-a-claimmapper-plugin/#default-jwt-claimmapper",
-      "destination": "/security#default-jwt-claimmapper"
-    },
-    {
       "source": "/concepts/what-is-a-retention-period",
       "destination": "clusters#retention-period"
     },
@@ -1417,24 +1237,12 @@
       "destination": "/clusters#multi-cluster-replication"
     },
     {
-      "source": "/configure-temporal-server",
-      "destination": "/references/configuration"
-    },
-    {
-      "source": "/configuring-temporal-server",
-      "destination": "/references/configuration"
-    },
-    {
       "source": "/archive-data#providers",
       "destination": "/cluster-deployment-guide#provider"
     },
     {
       "source": "/configure-temporal-server#membership---required",
       "destination": "/blog/workflow-engine-principles#membership-and-routing-1350"
-    },
-    {
-      "source": "/configuring-temporal-server#clustermetadata",
-      "destination": "/references/configuration#clustermetadata"
     },
     {
       "source": "/filter-workflows",
@@ -1473,20 +1281,12 @@
       "destination": "/dev-guide/java"
     },
     {
-      "source": "/java/how-to-provide-an-authorization-token-in-java",
-      "destination": "/security#authorizer-plugin"
-    },
-    {
       "source": "/learn-archival",
       "destination": "/clusters#archival"
     },
     {
       "source": "/learn-cli",
       "destination": "/cli"
-    },
-    {
-      "source": "/learn-server-configuration#tls",
-      "destination": "/references/configuration#tls"
     },
     {
       "source": "/learn-workflow-filtering",
@@ -1529,10 +1329,6 @@
       "destination": "/dev-guide/go/foundations#develop-workflows"
     },
     {
-      "source": "/learn-server-configuration",
-      "destination": "/references/configuration"
-    },
-    {
       "source": "/next/java/how-to-develop-an-activity-in-java",
       "destination": "/dev-guide/java/foundations#develop-activities"
     },
@@ -1541,20 +1337,8 @@
       "destination": "/dev-guide/java/foundations#workflow-return-values"
     },
     {
-      "source": "/server-architecture",
-      "destination": "/security#authorizer-plugin"
-    },
-    {
       "source": "/tctl-next",
       "destination": "/cli"
-    },
-    {
-      "source": "/tctl-next/modifiers#--event-id",
-      "destination": "/cli/workflow#reset"
-    },
-    {
-      "source": "/tctl-next/workflow#reset",
-      "destination": "/cli/workflow#reset"
     },
     {
       "source": "/java/quick-start",
@@ -1590,26 +1374,26 @@
     },
     {
       "source": "/python/:path*",
-      "destination": "/develop/python"
+      "destination": "/develop/typescript"
     },
     {
       "source": "/dev-guide/python/foundations:path*",
-      "destination": "/develop/python/core-application",
+      "destination": "/develop/typescript/core-application",
       "permanent": true
     },
     {
       "source": "/dev-guide/python/features:path*",
-      "destination": "/develop/python",
+      "destination": "/develop/typescript",
       "permanent": true
     },
     {
       "source": "/dev-guide/python/testing:path*",
-      "destination": "/develop/python/testing-suite",
+      "destination": "/develop/typescript/testing-suite",
       "permanent": true
     },
     {
       "source": "/dev-guide/python:path*",
-      "destination": "/develop/python"
+      "destination": "/develop/typescript"
     },
     {
       "source": "/concepts/what-is-a-retry-policy",
@@ -1632,94 +1416,6 @@
       "destination": "/cli"
     },
     {
-      "source": "/cloud/index",
-      "destination": "/cloud"
-    },
-    {
-      "source": "/cloud/account-setup/certificates:path*",
-      "destination": "/cloud/certificates:path*"
-    },
-    {
-      "source": "/cloud/account-setup/namespaces:path*",
-      "destination": "/cloud/namespaces:path*"
-    },
-    {
-      "source": "/cloud/account-setup/users:path*",
-      "destination": "/cloud/users:path*"
-    },
-    {
-      "source": "/kb/cloud/how-to-manage-certificates-in-temporal-cloud:path*",
-      "destination": "/cloud/certificates:path*"
-    },
-    {
-      "source": "/server/production-deployment/:path*",
-      "destination": "/production-deployment"
-    },
-    {
-      "source": "/kb/legacy-oss-prod-deploy:path*",
-      "destination": "/production-deployment"
-    },
-    {
-      "source": "/cloud/release-notes",
-      "destination": "https://temporal.io/change-log/product-area/cloud"
-    },
-    {
-      "source": "/cloud/release-notes/:path*",
-      "destination": "https://temporal.io/change-log/product-area/cloud"
-    },
-    {
-      "source": "/cloud/how-to-manage-namespaces-in-temporal-cloud:path*",
-      "destination": "/cloud/namespaces:path*"
-    },
-    {
-      "source": "/cloud/how-to-manage-certificates-in-temporal-cloud:path*",
-      "destination": "/cloud/certificates:path*"
-    },
-    {
-      "source": "/cloud/how-to-monitor-temporal-cloud-metrics",
-      "destination": "/cloud/metrics"
-    },
-    {
-      "source": "/cloud/introduction/security-cloud:path*",
-      "destination": "cloud/security:path*"
-    },
-    {
-      "source": "/cloud/introduction/operating-envelope:path*",
-      "destination": "cloud/operating-envelope:path*"
-    },
-    {
-      "source": "/cloud/introduction/pricing:path*",
-      "destination": "/cloud/pricing:path*"
-    },
-    {
-      "source": "/cloud/introduction/support:path*",
-      "destination": "/cloud/support:path*"
-    },
-    {
-      "source": "/cloud/how-to-create-a-ticket-for-temporal-support",
-      "destination": "/cloud/support#support-ticket"
-    },
-    {
-      "source": "/cloud/how-to-get-started-with-temporal-cloud:path*",
-      "destination": "/cloud/get-started:path*"
-    },
-    {
-      "source": "/cloud/how-to-manage-saml-with-temporal-cloud:path*",
-      "destination": "/cloud/saml:path*"
-    },
-    {
-      "source": "/cloud/how-to-manage-audit-logging:path*",
-      "destination": "/cloud/audit-logging:path*"
-    },
-    {
-      "source": "/kb/prometheus-grafana-setup-cloud",
-      "destination": "/cloud/metrics#prometheus-and-grafana-setup"
-    },
-    {
-      "source": "/kb/cloud-namespace-naming-considerations",
-      "destination": "/cloud/namespaces#best-practices"
-    },
-    {
       "source": "/typescript/versioning",
       "destination": "/dev-guide/typescript/versioning"
     },
@@ -1728,16 +1424,8 @@
       "destination": "/dev-guide/java"
     },
     {
-      "source": "/java/how-to-provide-an-authorization-token-in-java",
-      "destination": "/security#authorizer-plugin"
-    },
-    {
       "source": "/java/:path*",
-      "destination": "/develop/java"
-    },
-    {
-      "source": "/tctl-next/workflow#reset",
-      "destination": "/cli/workflow#reset"
+      "destination": "/develop/typescript"
     },
     {
       "source": "/tctl-next/modifiers#--event-id",
@@ -1784,10 +1472,6 @@
       "destination": "/troubleshooting/deadline-exceeded-error"
     },
     {
-      "source": "/kb/failures",
-      "destination": "/references/failures"
-    },
-    {
       "source": "/kb/temporal-platform-limits-sheet",
       "destination": "/self-hosted-guide/defaults"
     },
@@ -1800,26 +1484,12 @@
       "destination": "/self-hosted-guide/monitoring"
     },
     {
-      "source": "/production-readiness/develop#securing-your-data",
-      "destination": "/production-deployment/data-encryption",
-      "permanent": true
-    },
-    {
-      "source": "/production-readiness/develop#codec-server-setup",
-      "destination": "/production-deployment/data-encryption",
-      "permanent": true
-    },
-    {
       "source": "/production-readiness/:path*",
       "destination": "/self-hosted-guide"
     },
     {
       "source": "/kb/cadence-to-temporal",
       "destination": "https://community.temporal.io/t/cadence-to-temporal-migration-highlights/"
-    },
-    {
-      "source": "/self-hosted-guide/data-encryption",
-      "destination": "/production-deployment/data-encryption"
     },
     {
       "source": "/temporal/release-stages",
@@ -1924,16 +1594,6 @@
     {
       "source": "/dev-guide/:path*",
       "destination": "/develop/:path",
-      "permanent": true
-    },
-    {
-      "source": "/production-readiness/develop#securing-your-data",
-      "destination": "/production-deployment/data-encryption",
-      "permanent": true
-    },
-    {
-      "source": "/production-readiness/develop#codec-server-setup",
-      "destination": "/production-deployment/data-encryption",
       "permanent": true
     }
   ]

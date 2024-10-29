@@ -88,12 +88,6 @@ module.exports = async function createConfigAsync() {
             href: "/develop",
             right: "left",
           },
-          {
-            label: "Temporal Cloud",
-            to: "/cloud",
-            activeBasePath: "cloud",
-            position: "left",
-          },
         ],
       },
       footer: {
@@ -129,30 +123,6 @@ module.exports = async function createConfigAsync() {
           {
             items: [
               {
-                label: "Temporal Cloud",
-                href: "https://temporal.io/cloud",
-              },
-              {
-                label: "Meetups",
-                href: "https://temporal.io/community#events",
-              },
-              {
-                label: "Workshops",
-                href: "https://temporal.io/community#workshops",
-              },
-              {
-                label: "Support forum",
-                href: "https://community.temporal.io/",
-              },
-              {
-                label: "Ask an expert",
-                href: "https://pages.temporal.io/ask-an-expert",
-              },
-            ],
-          },
-          {
-            items: [
-              {
                 label: "Learn Temporal",
                 href: "https://learn.temporal.io",
               },
@@ -167,26 +137,6 @@ module.exports = async function createConfigAsync() {
               {
                 label: "Newsletter signup",
                 href: "https://pages.temporal.io/newsletter-subscribe",
-              },
-            ],
-          },
-          {
-            items: [
-              {
-                label: "Security",
-                to: "/security",
-              },
-              {
-                label: "Privacy policy",
-                to: "https://temporal.io/global-privacy-policy",
-              },
-              {
-                label: "Terms of service",
-                href: "https://docs.temporal.io/pdf/temporal-tos-2021-07-24.pdf",
-              },
-              {
-                label: "We're hiring",
-                href: "https://temporal.io/careers",
               },
             ],
           },

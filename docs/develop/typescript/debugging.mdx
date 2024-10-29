@@ -17,14 +17,14 @@ The Debugging section of the Temporal TypeScript SDK developer's guide covers to
 
 ## How to debug in a development environment {#debug-in-a-development-environment}
 
-In addition to the normal development tools of logging and a debugger, you can also see what's happening in your Workflow by using the [Web UI](/web-ui) or [Temporal CLI](/cli).
+In addition to the normal development tools of logging and a debugger, you can also see what's happening in your Workflow by using the Web UI or Temporal CLI.
 
 ## How to debug in a production environment {#debug-in-a-production-environment}
 
 You can debug production Workflows using:
 
-- [Web UI](/web-ui)
-- [Temporal CLI](/cli)
+- Web UI
+- Temporal CLI
 - [Replay](/develop/typescript/testing-suite#replay)
 - [Tracing](/develop/typescript/observability#tracing)
 - [Logging](/develop/typescript/observability#logging)
@@ -32,7 +32,7 @@ You can debug production Workflows using:
 You can debug and tune Worker performance with metrics and the [Worker performance guide](/develop/worker-performance).
 For information on setting up SDK metrics, see [Metrics](/develop/typescript/observability#metrics) in the Observability section of the TypeScript SDK developer's guide.
 
-Debug Server performance with [Cloud metrics](/cloud/metrics/) or [self-hosted Server metrics](/self-hosted-guide/production-checklist#scaling-and-metrics).
+Debug Server performance with Cloud metrics or self-hosted Server metrics.
 
 ## How to troubleshoot common issues in the TypeScript SDK {#troubleshoot-common-issues}
 
@@ -271,8 +271,8 @@ Log it out and make sure it is an exact match with what is expected (often, the 
 
 You can "rewind time" using the Temporal CLI, resetting Workflow History to some previous point in time. You can read the Temporal CLI docs on:
 
-- [Restarting and resetting Workflows by ID](/cli)
-- [Resetting all Workflows by binary checksum identifier](/cli)
+- Restarting and resetting Workflows by ID
+- Resetting all Workflows by binary checksum identifier
 
 If you need to reset programmatically, the TS SDK does not have any high level APIs for this, but you can make raw gRPC calls to [resetWorkflowExecution](https://typescript.temporal.io/api/classes/proto.temporal.api.workflowservice.v1.WorkflowService-1/#resetworkflowexecution).
 
@@ -306,7 +306,7 @@ Querying a Workflow Execution whose query handler causes an error can result in 
 Some troubleshooting actions you can take:
 
 - Verify the connection from your Worker to the Temporal Server is working and doesn't have unusually high latency.
-- If you are running Temporal Server yourself, check your [server metrics](/self-hosted-guide/production-checklist#scaling-and-metrics) to ensure it's not overloaded.
+- If you are running Temporal Server yourself, check your server metrics to ensure it's not overloaded.
 - If what's timing out is a query, check the logs of your Workers to see if they are having issues handling the query.
 
 If none of the preceding actions help you discover why timeouts are occurring, please try to produce a minimal repro and we'll be glad to help.

@@ -18,7 +18,6 @@ _Note: All metrics in this article are prepended with the “temporal\_” prefi
 Performance tuning involves three important SDK metric groups:
 
 1. `worker_task_slots_available` gauges tagged `worker_type=WorkflowWorker` and `worker_type=ActivityWorker` for Workflow Task and Activity Workers correspondingly. These gauges report how many executor “slots” are currently available (unoccupied) for each Worker type.
-2. `workflow_task_schedule_to_start_latency` and `activity_schedule_to_start_latency` timers for Workflow Tasks and Activities correspondingly. For more information about `schedule_to_start` timeout and latency, see [Schedule-To-Start Timeout](/encyclopedia/detecting-activity-failures#schedule-to-start-timeout).
 3. `sticky_cache_size` and `workflow_active_thread_count` report the size of the Workflow cache and the number of cached Workflow threads.
 
 _Note: To have access to all the metrics mentioned above in the JavaSDK, version ≥ 1.8.0 is required._
@@ -41,7 +40,7 @@ These options limit the resource consumption of the in-memory Workflow cache. Wo
 
 :::tip Support, stability, and dependency info
 
-The information listed in this section is readable using the `DescribeTaskQueueEnhanced` method in the [Go SDK](https://github.com/temporalio/sdk-go/blob/74320648ab0e4178b1fedde01672f9b5b9f6c898/client/client.go), with the [Temporal CLI](https://github.com/temporalio/cli/releases/tag/v1.1.0) `task-queue describe` command, and using `DescribeTaskQueue` through RPC.
+The information listed in this section is readable using the `DescribeTaskQueueEnhanced` method in the Go SDK, with the Temporal CLI `task-queue describe` command, and using `DescribeTaskQueue` through RPC.
 
 :::
 
@@ -110,12 +109,6 @@ Task Queue data provide numerical insights into your Task Queue activity and bac
 Use these numbers to tune your production deployments.
 Evaluate your Worker loads and assess whether you need to scale up or reduce your Worker deployment.
 
-:::note RATE LIMITS
-
-[Visibility API rate limits](/cloud/limits#visibility-api-rate-limit) apply to Task Queue performance data requests.
-
-:::
-
 ### Query Task Queue info with Temporal CLI {#cli-task-queue-info}
 
 The Temporal CLI helps you monitor and evaluate Worker performance.
@@ -136,26 +129,6 @@ Determining Task reachability incurs a non-trivial computing cost.
 This feature may significantly change or be removed in a future release.
 
 :::
-
-### Query Task Queue info with the Go SDK {#go-sdk-task-queue-info}
-
-Retrieve Task Queue data using the Go SDK by calling `DescribeTaskQueueEnhanced`.
-Specify the Task Queue name and set `ReportStats` to `true`, as in the following example:
-
-```go
-for _, taskQueueName := range taskQueueNames {
-        resp, err := s.client.DescribeTaskQueueEnhanced(ctx, client.DescribeTaskQueueEnhancedOptions{
-            TaskQueue:   taskQueueName,
-            ReportStats: true,
-        })
-        if err != nil {
-            log.Printf("Error describing task queue %s: %v", taskQueueName, err)
-        }
-
-        // Get the backlog count from the enhanced response
-        backlogCount += getBacklogCount(resp)
-    }
-```
 
 ### Evaluate Worker availability and capacity issues {#worker-capacity-issues}
 
@@ -242,8 +215,8 @@ then consider increasing the number of pollers by adjusting `maxConcurrentWorkfl
 
 If, after adjusting the poller and executors count as specified earlier, you still observe an elevated `schedule_to_start`, underutilized Worker hosts, or high `worker_task_slots_available`, you might want to check the following:
 
-- If server-side rate limiting per Task Queue is set by `WorkerOptions#maxTaskQueueActivitiesPerSecond`, remove the limit or adjust the value up. (See [Go](/develop/go/core-application#taskqueueactivitiespersecond) and [Java](https://www.javadoc.io/doc/io.temporal/temporal-sdk/latest/io/temporal/worker/WorkerOptions.Builder.html).)
-- If Worker-side rate limiting per Worker is set by `WorkerOptions#maxWorkerActivitiesPerSecond`, remove the limit. (See [Go](/develop/go/core-application#workeractivitiespersecond), [TypeScript](https://typescript.temporal.io/api/interfaces/worker.WorkerOptions#maxconcurrentactivitytaskexecutions), and [Java](https://www.javadoc.io/doc/io.temporal/temporal-sdk/latest/io/temporal/worker/WorkerOptions.Builder.html).)
+- If server-side rate limiting per Task Queue is set by `WorkerOptions#maxTaskQueueActivitiesPerSecond`, remove the limit or adjust the value up.
+- If Worker-side rate limiting per Worker is set by `WorkerOptions#maxWorkerActivitiesPerSecond`, remove the limit.
 
 ## Workflow Cache Tuning
 
@@ -280,4 +253,4 @@ As with any multithreading system, specifying too large values without monitorin
 **Related**
 
 - [Workers in production operation guide](https://temporal.io/blog/workers-in-production)
-- [Full set of SDK Metrics reference](/references/sdk-metrics)
+- Full set of SDK Metrics reference

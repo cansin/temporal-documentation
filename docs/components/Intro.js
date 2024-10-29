@@ -24,115 +24,8 @@ const coreConcepts = [
 
 const appDevGuideLinks = [
   {
-    path: "/develop/go",
-    name: "Go SDK developer guide",
-  },
-  {
-    path: "/develop/java",
-    name: "Java SDK developer guide",
-  },
-  {
-    path: "/develop/python",
-    name: "Python SDK developer guide",
-  },
-  {
     path: "/develop/typescript",
     name: "TypeScript SDK developer guide",
-  },
-  {
-    path: "/develop/dotnet",
-    name: ".NET SDK developer guide",
-  },
-  {
-    path: "/develop/php",
-    name: "PHP SDK developer guide",
-  },
-];
-
-const troubleshooting = [
-  {
-    path: "/troubleshooting/deadline-exceeded-error",
-    name: "Deadline exceeded",
-  },
-  {
-    path: "/troubleshooting/last-connection-error",
-    name: "Last connection",
-  },
-];
-
-const prodDeployLinks = [
-  {
-    path: "/production-deployment",
-    name: "Get started deploying to production",
-  },
-];
-
-const devTools = [
-  {
-    path: "/cli",
-    name: `Temporal CLI`,
-  },
-  {
-    path: "/web-ui",
-    name: `Web UI`,
-  },
-];
-
-const references = [
-  {
-    path: "/references/commands",
-    name: `Commands`,
-  },
-  {
-    path: "/references/events",
-    name: "Events",
-  },
-  {
-    path: "/references/sdk-metrics",
-    name: "SDK metrics",
-  },
-  {
-    path: "/references/cluster-metrics",
-    name: "Temporal Service metrics",
-  },
-  {
-    path: "/references/errors",
-    name: `Workflow Task errors`,
-  },
-];
-
-const selfHostedDeploymentGuide = [
-  {
-    path: "/self-hosted-guide/introduction",
-    name: "Introduction",
-  },
-  {
-    path: "/self-hosted-guide/defaults",
-    name: "Defaults",
-  },
-  {
-    path: "/self-hosted-guide/security",
-    name: "Security",
-  },
-  {
-    path: "/self-hosted-guide/production-checklist",
-    name: "Production checklist",
-  },
-  {
-    path: "/self-hosted-guide/monitoring",
-    name: "Monitoring",
-  },
-  {
-    path: "/self-hosted-guide#visibility",
-    name: "Visibility",
-  },
-  {
-    path: "/self-hosted-guide/upgrade-server",
-    name: "Upgrade server",
-  },
-  {
-    path: "/self-hosted-guide/multi-cluster-replication",
-    name: "Multi-Cluster Replication",
   },
 ];
 
@@ -364,18 +257,6 @@ function Explained() {
           content="Have a use case? Jump into the developer guides to start building your next backend application with Temporal."
           links={appDevGuideLinks}
         />
-      </div>
-      <CloudCard links={prodDeployLinks} />
-
-      <div className="deployment">
-        <div className="dev-tools-container">
-          <SimpleCard
-            title="Dev tools"
-            content="Use the Temporal CLI and Web UI to manage and monitor your Workflows."
-            links={devTools}
-          />
-        </div>
-        <SimpleCard title="References" content="Referable Platform information" links={references} />
       </div>
 
       <div className="my-20 text-center">

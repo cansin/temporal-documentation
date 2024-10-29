@@ -11,22 +11,6 @@ tags:
 
 The following terms are used in [Temporal Platform](/temporal) documentation.
 
-#### [Action](/cloud/pricing#action)
-
-An Action is the fundamental pricing unit in Temporal Cloud.
-Temporal Actions are the building blocks for Workflow Executions.
-When you execute a Temporal Workflow, its Actions create the ongoing state and progress of your Temporal Application.
-
-<!-- _Tags: [term](/tags/term), [pricing](/tags/pricing), [temporal-cloud](/tags/temporal-cloud), [explanation](/tags/explanation)_ -->
-
-#### [Actions Per Second (APS)](/cloud/limits#throughput)
-
-APS, or Actions per second, is specific to Temporal Cloud.
-Each Temporal Cloud Namespace enforces a rate limit, which is measured in Actions per second (APS).
-This is the number of Actions, such as starting or signaling a Workflow, that can be performed per second within a specific Namespace.
-
-<!-- _Tags: [term](/tags/term), [pricing](/tags/pricing), [temporal-cloud](/tags/temporal-cloud), [explanation](/tags/explanation)_ -->
-
 #### [Activity](/activities)
 
 In day-to-day conversation, the term "Activity" denotes an Activity Type, Activity Definition, or Activity Execution.
@@ -89,29 +73,11 @@ Asynchronous Activity Completion occurs when an external system provides the fin
 
 <!-- _Tags: [term](/tags/term), [explanation](/tags/explanation)_ -->
 
-#### [Audit Logging](/cloud/audit-logging)
-
-Audit Logging is a feature that provides forensic access information for accounts, users, and Namespaces.
-
-<!-- _Tags: [term](/tags/term), [explanation](/tags/explanation), [temporal-cloud](/tags/temporal-cloud), [operations](/tags/operations)_ -->
-
-#### [Authorizer Plugin](/self-hosted-guide/security#authorizer-plugin)
-
-The `Authorizer` plugin contains a single `Authorize` method, which is invoked for each incoming API call. `Authorize` receives information about the API call, along with the role and permission claims of the caller.
-
-<!-- _Tags: [term](/tags/term)_ -->
-
 #### [Child Workflow](/encyclopedia/child-workflows)
 
 A Child Workflow Execution is a Workflow Execution that is spawned from within another Workflow.
 
 <!-- _Tags: [term](/tags/term), [explanation](/tags/explanation), [child-workflow](/tags/child-workflow)_ -->
-
-#### [Claim Mapper](/self-hosted-guide/security#claim-mapper)
-
-The Claim Mapper component is a pluggable component that extracts Claims from JSON Web Tokens (JWTs).
-
-<!-- _Tags: [term](/tags/term)_ -->
 
 #### [Codec Server](/dataconversion#codec-server)
 
@@ -193,17 +159,6 @@ An append-only log of Events that represents the full state a Workflow Execution
 
 <!-- _Tags: [term](/tags/term), [explanation](/tags/explanation)_ -->
 
-#### [Failback](/cloud/multi-region)
-
-After Temporal Cloud has resolved an outage or incident involving a failover, a failback process shifts Workflow Execution processing back to the original region that was active before the incident.
-
-#### [Failover](/cloud/multi-region)
-
-A failover shifts Workflow Execution processing from an active Temporal Namespace region to a standby Temporal Namespace region during outages or other incidents.
-Standby Namespace regions use replication to duplicate data and prevent data loss during failover.
-
-<!-- _Tags: [term](/tags/term), [explanation](/tags/explanation)_ -->
-
 #### [Failure](/temporal#failure)
 
 Temporal Failures are representations of various types of errors that occur in the system.
@@ -216,7 +171,7 @@ A Failure Converter converts error objects to proto Failures and back.
 
 <!-- _Tags: [term](/tags/term), [explanation](/tags/explanation)_ -->
 
-#### [Failures](/references/failures)
+#### Failures
 
 A Failure is Temporal's representation of various types of errors that occur in the system.
 
@@ -228,7 +183,7 @@ The Frontend Service is a stateless gateway service that exposes a strongly type
 
 <!-- _Tags: [term](/tags/term)_ -->
 
-#### [General Availability](/evaluate/development-production-features/release-stages#general-availability)
+#### General Availability
 
 Learn more about the General Availability release stage
 
@@ -238,7 +193,7 @@ Learn more about the General Availability release stage
 
 A Global Namespace is a Namespace that duplicates data from an active [Temporal Service](#temporal-cluster) to a standby Service using the replication to keep both Namespaces in sync.
 Global Namespaces are designed to respond to service issues like network congestion.
-When service to the primary Cluster is compromised, a [failover](#failover) transfers control from the active to the standby cluster.
+When service to the primary Cluster is compromised, a failover transfers control from the active to the standby cluster.
 
 <!-- _Tags: [term](/tags/term), [explanation](/tags/explanation)_ -->
 
@@ -284,19 +239,9 @@ A Memo is a non-indexed user-supplied set of Workflow Execution metadata that is
 
 <!-- _Tags: [term](/tags/term), [explanation](/tags/explanation)_ -->
 
-#### [Multi-Cluster Replication](/self-hosted-guide/multi-cluster-replication)
+#### Multi-Cluster Replication
 
 Multi-Cluster Replication is a feature which asynchronously replicates Workflow Executions from active Clusters to other passive Clusters, for backup and state reconstruction.
-
-<!-- _Tags: [term](/tags/term), [explanation](/tags/explanation)_ -->
-
-#### [Multi-region Namespace](/cloud/multi-region)
-
-A multi-region Namespace (MRN) is a [Temporal Cloud](#temporal-cloud) Namespace that is configured to work across an active [region](/cloud/service-availability#regions) and a standby region.
-Each region corresponds to a dedicated Temporal Cloud Service.
-Temporal Cloud automatically replicates Workflow Executions and metadata from the active to the standby region.
-MRNs are designed to respond to service issues as they arise.
-In the event that the Namespace's performance is compromised, a [failover](#failover) transfers control from the active to the standby region.
 
 <!-- _Tags: [term](/tags/term), [explanation](/tags/explanation)_ -->
 
@@ -363,7 +308,7 @@ The Nexus handler code in a Temporal Worker typically created using Temporal SDK
 <!-- _Tags: [term](/tags/term), [explanation](/tags/explanation)_ -->
 
 
-#### [Nexus RPC](https://github.com/nexus-rpc/api/blob/main/SPEC.md)
+#### Nexus RPC
 
 Nexus RPC is a protocol designed with durable execution in mind.
 It supports arbitrary-duration Operations that extend beyond a traditional RPC — a key underpinning to connect durable executions within and across Namespaces, clusters, regions, and cloud boundaries.
@@ -401,13 +346,13 @@ A Payload Converter serializes data, converting objects or values to bytes and b
 
 <!-- _Tags: [term](/tags/term), [explanation](/tags/explanation)_ -->
 
-#### [Pre-release](/evaluate/development-production-features/release-stages#pre-release)
+#### Pre-release
 
 Learn more about the Pre-release stage
 
 <!-- _Tags: [product-release-stages](/tags/product-release-stages), [term](/tags/term)_ -->
 
-#### [Public Preview](/evaluate/development-production-features/release-stages#public-preview)
+#### Public Preview
 
 Learn more about the Public Preview release stage
 
@@ -425,7 +370,7 @@ Remote data encoding is using your custom Data Converter to decode (and encode) 
 
 <!-- _Tags: [term](/tags/term), [explanation](/tags/explanation)_ -->
 
-#### [Requests Per Second (RPS)](/references/dynamic-configuration#service-level-rps-limits)
+#### Requests Per Second (RPS)
 
 RPS, or Requests per second, is used in the Temporal Service (both in self-hosted Temporal and Temporal Cloud).
 This is a measure that controls the rate of requests at the service level, such as the Frontend, History, or Matching Service.
@@ -552,45 +497,15 @@ A Temporal Application is a set of Workflow Executions.
 
 <!-- _Tags: [term](/tags/term), [explanation](/tags/explanation)_ -->
 
-#### [Temporal CLI](/cli) {#cli}
+#### Temporal CLI {#cli}
 
 The Temporal CLI is the most recent version of Temporal's command-line tool.
 
-<!-- _Tags: [term](/tags/term), [cli](/tags/cli)_ -->
+<!-- _Tags: term_ -->
 
 #### [Temporal Client](/encyclopedia/temporal-sdks#temporal-client)
 
 A Temporal Client, provided by a Temporal SDK, provides a set of APIs to communicate with a Temporal Service.
-
-<!-- _Tags: [term](/tags/term), [explanation](/tags/explanation)_ -->
-
-#### [Temporal Cloud](/cloud/overview)
-
-Temporal Cloud is a managed, hosted Temporal environment that provides a platform for Temporal Applications.
-
-<!-- _Tags: [term](/tags/term), [explanation](/tags/explanation)_ -->
-
-#### [Temporal Cloud Account Id](/cloud/namespaces#temporal-cloud-account-id)
-
-A Temporal Cloud Account Id is a unique identifier for a customer.
-
-<!-- _Tags: [term](/tags/term), [explanation](/tags/explanation)_ -->
-
-#### [Temporal Cloud Namespace Id](/cloud/namespaces#temporal-cloud-namespace-id)
-
-A Cloud Namespace Id is a globally unique identifier for a Namespace in Temporal Cloud.
-
-<!-- _Tags: [term](/tags/term), [explanation](/tags/explanation)_ -->
-
-#### [Temporal Cloud Namespace Name](/cloud/namespaces#temporal-cloud-namespace-name)
-
-A Cloud Namespace Name is a customer-supplied name for a Namespace in Temporal Cloud.
-
-<!-- _Tags: [term](/tags/term), [explanation](/tags/explanation)_ -->
-
-#### [Temporal Cloud gRPC Endpoint](/cloud/namespaces#temporal-cloud-grpc-endpoint)
-
-A Cloud gRPC Endpoint is a Namespace-specific address used to access Temporal Cloud from your code.
 
 <!-- _Tags: [term](/tags/term), [explanation](/tags/explanation)_ -->
 
@@ -633,12 +548,6 @@ A Temporal SDK is a language-specific library that offers APIs to construct and 
 The Temporal Server is a grouping of four horizontally scalable services.
 
 <!-- _Tags: [term](/tags/term), [explanation](/tags/explanation)_ -->
-
-#### [Temporal Web UI](/web-ui)
-
-The Temporal Web UI provides users with Workflow Execution state and metadata for debugging purposes.
-
-<!-- _Tags: [term](/tags/term), [web-ui](/tags/web-ui)_ -->
 
 #### [Timer](/workflows#timer)
 
@@ -688,12 +597,6 @@ The Worker Service runs background processing for the replication queue, system 
 
 <!-- _Tags: [term](/tags/term)_ -->
 
-#### [Worker Session](/workers#worker-session)
-
-A Worker Session is a feature provided by some SDKs that provides a straightforward way to ensure that Activity Tasks are executed with the same Worker without requiring you to manually specify Task Queue names.
-
-<!-- _Tags: [term](/tags/term), [explanation](/tags/explanation)_ -->
-
 #### [Workflow](/workflows)
 
 In day-to-day conversations, the term "Workflow" frequently denotes either a Workflow Type, a Workflow Definition, or a Workflow Execution.
@@ -717,12 +620,6 @@ A Temporal Workflow Execution is a durable, scalable, reliable, and reactive fun
 A Workflow Execution Timeout is the maximum time that a Workflow Execution can be executing (have an Open status) including retries and any usage of Continue As New.
 
 <!-- _Tags: [term](/tags/term), [explanation](/tags/explanation), [timeouts](/tags/timeouts)_ -->
-
-#### [Workflow History Export](/cloud/export)
-
-Workflow History export allows users to export Closed Workflow Histories to a user's Cloud Storage Sink.
-
-<!-- _Tags: [term](/tags/term), [explanation](/tags/explanation), [temporal-cloud](/tags/temporal-cloud), [operations](/tags/operations)_ -->
 
 #### [Workflow Id](/workflows#workflow-id)
 
